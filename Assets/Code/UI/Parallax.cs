@@ -34,7 +34,7 @@ public class Parallax : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            var newPosition = Mathf.Repeat(Time.time * scrollSpeed / _parallaxSpeeds[i], 34f);
+            var newPosition = Mathf.Repeat(Time.time * scrollSpeed / _parallaxSpeeds[i], 30f);
             _backgrounds[i].position = _startPosition[i] + Vector3.right * newPosition;
         }
     }
