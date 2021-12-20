@@ -4,6 +4,9 @@
 [Bb]uild/
 [Bb]uilds/
 [Aa]ssets/Asset Store Resources/
+
+ItchIO/
+
 Assets/AssetStoreTools*
 
 /Assets/TextMesh Pro*
