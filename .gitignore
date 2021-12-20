@@ -3,7 +3,13 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Aa]ssets/Asset Store Resources/
 Assets/AssetStoreTools*
+
+/Assets/TextMesh Pro*
+
+# Exclude rider idea data
+.idea
 
 # Visual Studio cache directory
 .vs/
