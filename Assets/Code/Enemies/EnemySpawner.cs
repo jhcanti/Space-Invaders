@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemiesConfiguration enemiesConfiguration;
 
     private EnemyFactory _enemyFactory;
+    private EventQueue _eventQueue;
     private float _currentTime;
     private int _currentConfigurationIndex;
     private bool _canSpawn;
@@ -15,6 +15,11 @@ public class EnemySpawner : MonoBehaviour
     {
         var instance = Instantiate(enemiesConfiguration);
         _enemyFactory = new EnemyFactory(instance);
+    }
+
+    private void Start()
+    {
+        _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
     }
 
     public void StartSpawn()
@@ -45,8 +50,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (_currentConfigurationIndex >= levelConfiguration.WaveConfigurations.Length)
         {
-            //emitimos un evento de AllEnemiesSpawned
-            Debug.Log("Todos los enemigos spawneados");
+            _eventQueue.EnqueueEvent(new AllEnemiesSpawnedEvent());
         }
     }
 
@@ -56,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
         {
             var enemy = _enemyFactory.Create(enemyToSpawn.EnemyId.Value, enemyToSpawn.SpawnPosition, enemyToSpawn.SpawnRotation);
             enemy.Configure(enemyToSpawn.Health, enemyToSpawn.Speed, enemyToSpawn.FireRate, enemyToSpawn.PointsToAdd);
+            _eventQueue.EnqueueEvent(new EnemySpawnEvent());
         }
     }
 }
