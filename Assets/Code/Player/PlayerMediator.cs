@@ -49,10 +49,10 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     {
         var damageable = collision.GetComponent<IDamageable>();
         if (damageable != null)
-            damageable.RecieveDamage(100);
+            damageable.ReceiveDamage(100);
     }
 
-    public void RecieveDamage(int amount)
+    public void ReceiveDamage(int amount)
     {
         var isDead = healthController.ReciveDamage(amount);
         if (isDead)

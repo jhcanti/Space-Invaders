@@ -49,7 +49,7 @@ public abstract class Projectile : MonoBehaviour
 
         if (damageable.Team != Team)
         {
-            damageable.RecieveDamage(damage);
+            damageable.ReceiveDamage(damage);
             DeactivateProjectile();
         }
             

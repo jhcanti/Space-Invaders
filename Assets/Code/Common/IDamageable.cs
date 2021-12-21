@@ -1,5 +1,5 @@
 ﻿public interface IDamageable
 {
-    void RecieveDamage(int amount);
+    void ReceiveDamage(int amount);
     Teams Team { get; }
 }

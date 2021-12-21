@@ -63,17 +63,17 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         var damageable = collision.GetComponent<IDamageable>();
         if (damageable != null)
-            damageable.RecieveDamage(damageForImpact);
+            damageable.ReceiveDamage(damageForImpact);
     }
 
 
-    public void RecieveDamage(int amount)
+    public void ReceiveDamage(int amount)
     {
         var isDead = HealthController.ReciveDamage(amount);
         if (isDead)
         {
             Destroy(gameObject);
-            var enemyDestroyedEvent = new EnemyDestroyedEvent(PointsToAdd, GetInstanceID());
+            var enemyDestroyedEvent = new EnemyDestroyedEvent(PointsToAdd);
             ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
         }
     }
