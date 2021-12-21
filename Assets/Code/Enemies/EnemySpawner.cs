@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour, IEventObserver
 {
     [SerializeField] private LevelConfiguration levelConfiguration;
     [SerializeField] private EnemiesConfiguration enemiesConfiguration;
 
     private EnemyFactory _enemyFactory;
+    private List<Enemy> _aliveEnemies;
     private float _currentTime;
     private int _currentConfigurationIndex;
     private bool _canSpawn;
@@ -14,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var instance = Instantiate(enemiesConfiguration);
         _enemyFactory = new EnemyFactory(instance);
+        _aliveEnemies = new List<Enemy>();
     }
 
     public void StartSpawn()
@@ -23,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StopAndReset()
     {
+        _aliveEnemies.Clear();
         _canSpawn = false;
         _currentConfigurationIndex = 0;
         _currentTime = 0;
@@ -55,7 +59,13 @@ public class EnemySpawner : MonoBehaviour
         {
             var enemyToSpawn = waveConfiguration.EnemiesToSpawn[i];
             var enemy = _enemyFactory.Create(enemyToSpawn.EnemyId.Value, enemyToSpawn.SpawnPosition, enemyToSpawn.SpawnRotation);
+            _aliveEnemies.Add(enemy);
             enemy.Configure(enemyToSpawn.Health, enemyToSpawn.Speed, enemyToSpawn.FireRate, enemyToSpawn.PointsToAdd);
         }
+    }
+
+    public void Process(EventData eventData)
+    {
+        
     }
 }
