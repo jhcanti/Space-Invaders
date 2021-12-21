@@ -8,5 +8,6 @@
     Victory,
     Restart,
     EnemyDestroyed,
-    EnemySpawned
+    EnemySpawned,
+    AllEnemiesSpawned
 }
