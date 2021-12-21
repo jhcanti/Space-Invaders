@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class VictoryState : IState
 {
     public void Tick()
@@ -9,7 +7,7 @@ public class VictoryState : IState
 
     public void OnEnter()
     {
-        Debug.Log("Victory!!");
+        ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new VictoryEvent());
     }
 
     public void OnExit()

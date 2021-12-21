@@ -1,19 +1,15 @@
-﻿using UnityEngine;
-
-public class GameOverState : IState
+﻿public class GameOverState : IState
 {
     public void Tick()
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnEnter()
     {
-        throw new System.NotImplementedException();
+        ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new GameOverEvent());
     }
 
     public void OnExit()
     {
-        throw new System.NotImplementedException();
     }
 }
