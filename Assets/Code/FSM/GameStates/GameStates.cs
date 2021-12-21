@@ -4,5 +4,6 @@
     InHighScores,
     Playing,
     Paused,
-    GameOver
+    GameOver,
+    Victory
 }

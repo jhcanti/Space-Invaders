@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private PausedState _paused;
     private PlayingState _playing;
     private GameOverState _gameOver;
+    private VictoryState _victory;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         _paused = new PausedState();
         _playing = new PlayingState(this);
         _gameOver = new GameOverState();
+        _victory = new VictoryState();
 
         // definimos las transiciones
         AddTransition(_inMenu, _playing, OnStatePlaying());
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         AddTransition(_inHighScores, _inMenu, OnStateInMenu());
         AddTransition(_playing, _paused, OnStatePaused());
         AddTransition(_playing, _gameOver, OnStateGameOver());
+        AddTransition(_playing, _victory, OnStateVictory());
         AddTransition(_paused, _playing, OnStatePlaying());
         AddTransition(_paused, _inMenu, OnStateInMenu());
         AddTransition(_gameOver, _playing, OnStatePlaying());
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
         Func<bool> OnStateHighScores() => () => CurrentGameState == GameStates.InHighScores;
         Func<bool> OnStatePaused() => () => CurrentGameState == GameStates.Paused;
         Func<bool> OnStateGameOver() => () => CurrentGameState == GameStates.GameOver;
+        Func<bool> OnStateVictory() => () => CurrentGameState == GameStates.Victory;
         Func<bool> OnStateInMenu() => () => CurrentGameState == GameStates.InMenu;
     }
 
