@@ -7,5 +7,6 @@
     GameOver,
     Victory,
     Restart,
-    EnemyDestroyed
+    EnemyDestroyed,
+    EnemySpawned
 }
