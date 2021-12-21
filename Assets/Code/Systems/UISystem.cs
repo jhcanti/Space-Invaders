@@ -122,7 +122,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     }
 
-    private void OnGameOver()
+    public void OnGameOver()
     {
         gameOverView.Show(scoreView.CurrentScore);
     }
@@ -132,6 +132,11 @@ public class UISystem : MonoBehaviour, IEventObserver
         if (eventData.EventId == EventIds.GameOver)
         {
             OnGameOver();
+        }
+
+        if (eventData.EventId == EventIds.Victory)
+        {
+            Debug.Log("Victory!!!");
         }
     }
 }
