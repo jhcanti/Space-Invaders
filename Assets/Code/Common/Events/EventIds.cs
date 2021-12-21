@@ -9,5 +9,6 @@
     Restart,
     EnemyDestroyed,
     EnemySpawned,
-    AllEnemiesSpawned
+    AllEnemiesSpawned,
+    PlayerDestroyed
 }
