@@ -72,6 +72,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(int amount)
     {
+        var viewportPosition = _camera.WorldToViewportPoint(Rb.position);
+        if (viewportPosition.x < 0 || viewportPosition.x > 1) return;
+        
         var isDead = HealthController.ReciveDamage(amount);
         if (isDead)
         {
