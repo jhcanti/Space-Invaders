@@ -3,7 +3,6 @@
     InMenu,
     InHighScores,
     Playing,
-    Paused,
     GameOver,
     Victory
 }
