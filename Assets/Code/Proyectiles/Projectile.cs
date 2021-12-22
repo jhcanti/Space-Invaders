@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Projectile : MonoBehaviour
@@ -9,19 +8,21 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField] private ProjectileId id;
     [SerializeField] protected float Speed;
-    [SerializeField] private float timeToDeactivate;
     [SerializeField] private int damage;
 
     protected Rigidbody2D Rb;
     protected Collider2D Collider2D;
     protected Transform MyTransform;
     protected bool Active;
+    
+    private Camera _camera;
 
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         Collider2D = GetComponent<Collider2D>();
+        _camera = Camera.main;
     }
 
     public void Init(Vector3 position, Quaternion rotation, Teams team)
@@ -30,7 +31,6 @@ public abstract class Projectile : MonoBehaviour
         Active = true;
         Team = team;
         DoInit(position, rotation);
-        StartCoroutine(DeactivateIn(timeToDeactivate));
     }
 
     protected abstract void DoInit(Vector3 position, Quaternion rotation);
@@ -38,8 +38,9 @@ public abstract class Projectile : MonoBehaviour
     private void FixedUpdate()
     {
         DoMove();
+        CheckLimits();
     }
-
+    
     protected abstract void DoMove();
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,10 +56,11 @@ public abstract class Projectile : MonoBehaviour
             
     }
     
-    private IEnumerator DeactivateIn(float seconds)
+    private void CheckLimits()
     {
-        yield return new WaitForSeconds(seconds);
-        DeactivateProjectile();
+        var viewportPosition = _camera.WorldToViewportPoint(Rb.position);
+        if (viewportPosition.x < -0.02f || viewportPosition.x > 1.02f)
+            DeactivateProjectile();
     }
 
     private void DeactivateProjectile()
