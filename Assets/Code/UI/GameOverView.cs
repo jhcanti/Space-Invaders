@@ -16,7 +16,7 @@ public class GameOverView : MonoBehaviour
     private void Awake()
     {
         restartButton.onClick.AddListener(RestartGame);
-        menuButton.onClick.AddListener(BackToMainmenu);
+        menuButton.onClick.AddListener(BackToMainMenu);
         namePlayer.onEndEdit.AddListener(SaveData);
     }
 
@@ -44,7 +44,7 @@ public class GameOverView : MonoBehaviour
         _uiSystem.OnRestartPressed();
     }
 
-    private void BackToMainmenu()
+    private void BackToMainMenu()
     {
         _uiSystem.OnMenuPressed();
     }
