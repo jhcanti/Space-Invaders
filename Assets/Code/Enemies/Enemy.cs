@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     public Teams Team { get; private set; }
+    public string Id => id.Value;
 
     [SerializeField] private EnemyId id;
     [SerializeField] private int damageForImpact;
@@ -17,8 +18,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected float FireRate;
     protected int PointsToAdd;
     protected Transform MyTransform;
-
-    public string Id => id.Value;
+    private Camera _camera;
 
 
     private void Awake()
@@ -29,6 +29,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         HealthController = GetComponent<HealthController>();
         WeaponController = GetComponent<WeaponController>();
         Team = Teams.Enemy;
+        _camera = Camera.main;
     }
 
     public void Configure(int health, float speed, float fireRate, int pointsToAdd)
@@ -55,7 +56,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         DoMove();
+        CheckLimits();
     }
+    
 
     protected abstract void DoMove();
 
@@ -74,6 +77,17 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
             var enemyDestroyedEvent = new EnemyDestroyedEvent(PointsToAdd);
+            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
+        }
+    }
+    
+    private void CheckLimits()
+    {
+        var viewportPosition = _camera.WorldToViewportPoint(Rb.position);
+        if (viewportPosition.x < -0.05f)
+        {
+            Destroy(gameObject);
+            var enemyDestroyedEvent = new EnemyDestroyedEvent(0);
             ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
         }
     }
