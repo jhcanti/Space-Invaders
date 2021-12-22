@@ -122,7 +122,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     public void OnMenuPressed()
     {
-
+        _eventQueue.EnqueueEvent(new BackToMenuEvent());
     }
 
     private void OnGameOver()

@@ -57,7 +57,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
         var isDead = healthController.ReciveDamage(amount);
         if (isDead)
         {
-            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new GameOverEvent());
+            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new PlayerDestroyedEvent());
             Destroy(gameObject);
         }
     }

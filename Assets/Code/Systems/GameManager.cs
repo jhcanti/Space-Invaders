@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private UserData _userData;
     private InMenuState _inMenu;
     private InHighScoresState _inHighScores;
-    private PausedState _paused;
     private PlayingState _playing;
     private GameOverState _gameOver;
     private VictoryState _victory;
@@ -28,29 +27,25 @@ public class GameManager : MonoBehaviour
         // instanciamos los diferentes estados
         _inMenu = new InMenuState(this);
         _inHighScores = new InHighScoresState(this);
-        _paused = new PausedState();
         _playing = new PlayingState(this);
-        _gameOver = new GameOverState();
-        _victory = new VictoryState();
+        _gameOver = new GameOverState(this);
+        _victory = new VictoryState(this);
 
         // definimos las transiciones
         AddTransition(_inMenu, _playing, OnStatePlaying());
         AddTransition(_inMenu, _inHighScores, OnStateHighScores());
         AddTransition(_inHighScores, _inMenu, OnStateInMenu());
-        AddTransition(_playing, _paused, OnStatePaused());
         AddTransition(_playing, _gameOver, OnStateGameOver());
         AddTransition(_playing, _victory, OnStateVictory());
-        AddTransition(_paused, _playing, OnStatePlaying());
-        AddTransition(_paused, _inMenu, OnStateInMenu());
-        AddTransition(_gameOver, _playing, OnStatePlaying());
+        AddTransition(_playing, _inMenu, OnStateInMenu());
         AddTransition(_gameOver, _inMenu, OnStateInMenu());
+        AddTransition(_victory, _inMenu, OnStateInMenu());
             
         void AddTransition(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
             
         // definimos las condiciones
         Func<bool> OnStatePlaying() => () => CurrentGameState == GameStates.Playing;
         Func<bool> OnStateHighScores() => () => CurrentGameState == GameStates.InHighScores;
-        Func<bool> OnStatePaused() => () => CurrentGameState == GameStates.Paused;
         Func<bool> OnStateGameOver() => () => CurrentGameState == GameStates.GameOver;
         Func<bool> OnStateVictory() => () => CurrentGameState == GameStates.Victory;
         Func<bool> OnStateInMenu() => () => CurrentGameState == GameStates.InMenu;
