@@ -6,6 +6,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 {
     [SerializeField] private PauseView pauseView;
     [SerializeField] private GameOverView gameOverView;
+    [SerializeField] private VictoryView victoryView;
     [SerializeField] private ScoreView scoreView;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI countdownText;
@@ -20,6 +21,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         pauseView.Configure(this);
         gameOverView.Configure(this);
+        victoryView.Configure(this);
     }
 
 
@@ -56,6 +58,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         pauseView.Hide();
         gameOverView.Hide();
+        victoryView.Hide();
     }
 
     public void ShowCountdown()
@@ -122,11 +125,16 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     }
 
-    public void OnGameOver()
+    private void OnGameOver()
     {
         gameOverView.Show(scoreView.CurrentScore);
     }
 
+    private void OnVictory()
+    {
+        victoryView.Show(scoreView.CurrentScore);
+    }
+    
     public void Process(EventData eventData)
     {
         if (eventData.EventId == EventIds.GameOver)
@@ -136,7 +144,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
         if (eventData.EventId == EventIds.Victory)
         {
-            Debug.Log("Victory!!!");
+            OnVictory();
         }
     }
 }
