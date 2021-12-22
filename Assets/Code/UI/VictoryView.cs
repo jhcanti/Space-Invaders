@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class VictoryView : MonoBehaviour
 {
-    [SerializeField] private Button restartButton;
+    [SerializeField] private Button nextLevelButton;
     [SerializeField] private Button menuButton;
     [SerializeField] private TextMeshProUGUI scoreText;
     
@@ -12,7 +12,7 @@ public class VictoryView : MonoBehaviour
 
     private void Awake()
     {
-        restartButton.onClick.AddListener(RestartGame);
+        nextLevelButton.onClick.AddListener(NextLevel);
         menuButton.onClick.AddListener(BackToMainMenu);
     }
     
@@ -32,9 +32,9 @@ public class VictoryView : MonoBehaviour
         scoreText.SetText(score.ToString());
     }
 
-    private void RestartGame()
+    private void NextLevel()
     {
-        _uiSystem.OnRestartPressed();
+        
     }
 
     private void BackToMainMenu()
