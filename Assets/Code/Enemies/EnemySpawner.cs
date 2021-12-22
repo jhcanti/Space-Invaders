@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private LevelConfiguration levelConfiguration;
     [SerializeField] private EnemiesConfiguration enemiesConfiguration;
 
+    private LevelConfiguration _levelConfiguration;
     private EnemyFactory _enemyFactory;
     private EventQueue _eventQueue;
     private float _currentTime;
-    private int _currentConfigurationIndex;
+    private int _currentWaveIndex;
     private bool _canSpawn;
 
     private void Awake()
@@ -22,15 +22,16 @@ public class EnemySpawner : MonoBehaviour
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
     }
 
-    public void StartSpawn()
+    public void StartSpawn(LevelConfiguration levelConfiguration)
     {
+        _levelConfiguration = levelConfiguration;
         _canSpawn = true;
     }
 
     public void StopAndReset()
     {
         _canSpawn = false;
-        _currentConfigurationIndex = 0;
+        _currentWaveIndex = 0;
         _currentTime = 0;
     }
 
@@ -38,17 +39,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!_canSpawn) return;
 
-        if (_currentConfigurationIndex >= levelConfiguration.WaveConfigurations.Length) return;
+        if (_currentWaveIndex >= _levelConfiguration.WaveConfigurations.Length) return;
 
         _currentTime += Time.deltaTime;
-        var waveConfiguration = levelConfiguration.WaveConfigurations[_currentConfigurationIndex];
+        var waveConfiguration = _levelConfiguration.WaveConfigurations[_currentWaveIndex];
         if (waveConfiguration.TimeToSpawn > _currentTime) return;
 
         SpawnEnemy(waveConfiguration);
-        _currentConfigurationIndex++;
+        _currentWaveIndex++;
         _currentTime = 0;
 
-        if (_currentConfigurationIndex >= levelConfiguration.WaveConfigurations.Length)
+        if (_currentWaveIndex >= _levelConfiguration.WaveConfigurations.Length)
         {
             _eventQueue.EnqueueEvent(new AllEnemiesSpawnedEvent());
         }

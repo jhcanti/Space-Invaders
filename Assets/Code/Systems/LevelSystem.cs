@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class LevelSystem : MonoBehaviour
 {
+    [SerializeField] private LevelConfiguration[] levelConfigurations;
     [SerializeField] private int countdownTime;
 
     private UISystem _uiSystem;
     private EnemySpawner _enemySpawner;
+    private int _currentLevel;
 
     // al comenzar el nivel debemos mostrar la cuenta atrás de comienzo del nivel
     // instanciar al Player
@@ -15,6 +17,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Start()
     {
+        _currentLevel = 0;
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
         StartCoroutine(Countdown());
@@ -23,14 +26,14 @@ public class LevelSystem : MonoBehaviour
 
     private IEnumerator Countdown()
     {
-        _uiSystem.ShowCountdown();
+        _uiSystem.ShowCountdown(_currentLevel+1);
         for (int i = countdownTime; i > 0; i--)
         {
             _uiSystem.SetCountdownText(i.ToString());
             yield return new WaitForSeconds(1f);
         }
         _uiSystem.HideCountdownText();
-        _enemySpawner.StartSpawn();
+        _enemySpawner.StartSpawn(levelConfigurations[_currentLevel]);
     }
 
 }

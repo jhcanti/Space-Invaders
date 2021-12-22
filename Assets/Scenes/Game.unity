@@ -287,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b7b48d3f4650b44b36ec670f64a432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelConfiguration: {fileID: 11400000, guid: ded57973f8e629e4b978c2f4355bd71b, type: 2}
   enemiesConfiguration: {fileID: 11400000, guid: 13ebd8306fe8a2a419dea54b633817ec, type: 2}
 --- !u!1 &138412913
 GameObject:
@@ -4795,6 +4794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8ba988368e90e4f8809a810794273c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelConfigurations:
+  - {fileID: 11400000, guid: ded57973f8e629e4b978c2f4355bd71b, type: 2}
   countdownTime: 3
 --- !u!4 &1958073152
 Transform:

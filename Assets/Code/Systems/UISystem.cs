@@ -61,9 +61,9 @@ public class UISystem : MonoBehaviour, IEventObserver
         victoryView.Hide();
     }
 
-    public void ShowCountdown()
+    public void ShowCountdown(int level)
     {
-        levelText.text = "Level 1"; // aqui irá el current level del LevelSystem
+        levelText.text = "Level " + level;
         countdownCanvasGroup.alpha = 1;
     }
 
