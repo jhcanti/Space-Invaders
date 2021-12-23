@@ -21,6 +21,7 @@
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.BackToMenu, this);
         _eventQueue.EnqueueEvent(new GameOverEvent());
+        new StopAndResetCommand().Execute();
     }
 
     public void OnExit()
