@@ -15,7 +15,7 @@ public class GameOverView : MonoBehaviour
 
     private void Awake()
     {
-        restartButton.onClick.AddListener(RestartGame);
+        restartButton.onClick.AddListener(RestartLevel);
         menuButton.onClick.AddListener(BackToMainMenu);
         namePlayer.onEndEdit.AddListener(SaveData);
     }
@@ -39,7 +39,7 @@ public class GameOverView : MonoBehaviour
     }
 
 
-    private void RestartGame()
+    private void RestartLevel()
     {
         _uiSystem.OnRestartPressed();
     }

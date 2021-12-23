@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private PlayingState _playing;
     private GameOverState _gameOver;
     private VictoryState _victory;
+    private RestartLevelState _restartLevel;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         _playing = new PlayingState(this);
         _gameOver = new GameOverState(this);
         _victory = new VictoryState(this);
+        _restartLevel = new RestartLevelState(this);
 
         // definimos las transiciones
         AddTransition(_inMenu, _playing, OnStatePlaying());
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
         AddTransition(_playing, _victory, OnStateVictory());
         AddTransition(_playing, _inMenu, OnStateInMenu());
         AddTransition(_gameOver, _inMenu, OnStateInMenu());
+        AddTransition(_gameOver, _restartLevel, OnStateRestartLevel());
+        AddTransition(_restartLevel, _playing, OnStatePlaying());
         AddTransition(_victory, _inMenu, OnStateInMenu());
             
         void AddTransition(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
         Func<bool> OnStateGameOver() => () => CurrentGameState == GameStates.GameOver;
         Func<bool> OnStateVictory() => () => CurrentGameState == GameStates.Victory;
         Func<bool> OnStateInMenu() => () => CurrentGameState == GameStates.InMenu;
+        Func<bool> OnStateRestartLevel() => () => CurrentGameState == GameStates.RestartLevel;
     }
 
     private void Start()

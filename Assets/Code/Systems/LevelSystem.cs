@@ -8,6 +8,7 @@ public class LevelSystem : MonoBehaviour
 
     private UISystem _uiSystem;
     private EnemySpawner _enemySpawner;
+    private PlayerInstaller _playerInstaller;
     private int _currentLevel;
 
     // al comenzar el nivel debemos mostrar la cuenta atrás de comienzo del nivel
@@ -20,9 +21,14 @@ public class LevelSystem : MonoBehaviour
         _currentLevel = 0;
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
+        _playerInstaller = ServiceLocator.Instance.GetService<PlayerInstaller>();
         StartCoroutine(Countdown());
     }
 
+    public void ResetAndStart()
+    {
+        StartCoroutine(Countdown());
+    }
 
     private IEnumerator Countdown()
     {
@@ -34,6 +40,7 @@ public class LevelSystem : MonoBehaviour
         }
         _uiSystem.HideCountdownText();
         _enemySpawner.StartSpawn(levelConfigurations[_currentLevel]);
+        _playerInstaller.SpawnPlayer();
     }
 
 }

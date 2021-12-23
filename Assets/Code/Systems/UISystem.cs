@@ -117,7 +117,8 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     public void OnRestartPressed()
     {
-
+        gameOverView.Hide();
+        _eventQueue.EnqueueEvent(new RestartEvent());
     }
 
     public void OnMenuPressed()

@@ -3,12 +3,12 @@
     StartGamePressed,
     GoToHighScore,
     BackToMenu,
-    ExitGame,
     GameOver,
     Victory,
-    Restart,
+    RestartPressed,
     EnemyDestroyed,
     EnemySpawned,
     AllEnemiesSpawned,
-    PlayerDestroyed
+    PlayerDestroyed,
+    RestartLevelComplete
 }

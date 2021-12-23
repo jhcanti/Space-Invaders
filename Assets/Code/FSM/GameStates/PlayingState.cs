@@ -27,7 +27,6 @@
         _eventQueue.Subscribe(EventIds.PlayerDestroyed, this);
         _aliveEnemies = 0;
         _allEnemiesSpawned = false;
-        new LoadSceneCommand("Game").Execute();
     }
 
     public void OnExit()

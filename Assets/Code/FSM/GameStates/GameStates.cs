@@ -4,5 +4,6 @@
     InHighScores,
     Playing,
     GameOver,
+    RestartLevel,
     Victory
 }

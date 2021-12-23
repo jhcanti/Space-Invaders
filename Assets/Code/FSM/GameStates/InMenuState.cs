@@ -24,7 +24,10 @@
     public void Tick()
     {
         if (_startGamePressed)
+        {
+            new LoadSceneCommand("Game").Execute();
             _gameManager.CurrentGameState = GameStates.Playing;
+        }
 
         if (_goToHighScoresPressed)
             _gameManager.CurrentGameState = GameStates.InHighScores;
