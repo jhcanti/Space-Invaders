@@ -31,6 +31,7 @@
 
     public void OnExit()
     {
+        ServiceLocator.Instance.GetService<PlayerInstaller>().SetPlayerInactive();
         _eventQueue.Unsubscribe(EventIds.EnemySpawned, this);
         _eventQueue.Unsubscribe(EventIds.EnemyDestroyed, this);
         _eventQueue.Unsubscribe(EventIds.AllEnemiesSpawned, this);
