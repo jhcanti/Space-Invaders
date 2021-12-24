@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour, IEventObserver
 {
     public Teams Team { get; private set; }
     public string Id => id.Value;
@@ -30,6 +30,8 @@ public abstract class Projectile : MonoBehaviour
         MyTransform = transform;
         Active = true;
         Team = team;
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         DoInit(position, rotation);
     }
 
@@ -71,4 +73,11 @@ public abstract class Projectile : MonoBehaviour
     }
 
     protected abstract void DoDeactivate();
+    public void Process(EventData eventData)
+    {
+        if (eventData.EventId == EventIds.GameOver || eventData.EventId == EventIds.Victory)
+        {
+            DeactivateProjectile();
+        }
+    }
 }
