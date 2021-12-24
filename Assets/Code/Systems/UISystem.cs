@@ -64,6 +64,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     public void ShowCountdown(int level)
     {
         levelText.text = "Level " + level;
+        countdownText.gameObject.SetActive(true);
         countdownCanvasGroup.alpha = 1;
     }
 
@@ -90,9 +91,9 @@ public class UISystem : MonoBehaviour, IEventObserver
     }
 
 
-    public void ResetScore()
+    public void ResetScore(int points)
     {
-        scoreView.ResetScore();
+        scoreView.SubtractScore(points);
     }
 
 

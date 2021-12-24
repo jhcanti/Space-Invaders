@@ -1,12 +1,12 @@
-﻿using System;
-
-public class ScoreSystem : IEventObserver, IScoreSystem
+﻿public class ScoreSystem : IEventObserver, IScoreSystem
 {
-    public int CurrentScore => _currentScore;
+    public int GlobalScore => _globalScore;
+    public int LevelScore => _levelScore;
 
     private UISystem _uISystem;
     private readonly DataStore _dataStore;
-    private int _currentScore;
+    private int _globalScore;
+    private int _levelScore;
     private const string Userdata = "UserData";
 
         
@@ -23,14 +23,15 @@ public class ScoreSystem : IEventObserver, IScoreSystem
     public void Init()
     {
         _uISystem = ServiceLocator.Instance.GetService<UISystem>();
+        _globalScore = 0;
         Reset();
     }
 
 
     public void Reset()
     {
-        _currentScore = 0;
-        _uISystem.ResetScore();
+        _uISystem.ResetScore(_levelScore);
+        _levelScore = 0;
     }
 
 
@@ -39,6 +40,7 @@ public class ScoreSystem : IEventObserver, IScoreSystem
         if (eventData.EventId == EventIds.Victory)
         {
             //UpdateBestScores(_currentScore);
+            _globalScore += _levelScore;
             return;
         }
 
@@ -51,6 +53,7 @@ public class ScoreSystem : IEventObserver, IScoreSystem
 
     private void AddScore(int points)
     {
+        _levelScore += points;
         _uISystem.AddScore(points);
     }
 
