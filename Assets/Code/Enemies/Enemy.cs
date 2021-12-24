@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IDamageable
+public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
 {
     public Teams Team { get; private set; }
     public string Id => id.Value;
@@ -41,6 +42,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         PointsToAdd = pointsToAdd;
         HealthController.Init(Health);
         WeaponController.Configure(FireRate, Team);
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
         DoInit();
     }
 
@@ -78,9 +80,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         var isDead = HealthController.ReciveDamage(amount);
         if (isDead)
         {
-            Destroy(gameObject);
-            var enemyDestroyedEvent = new EnemyDestroyedEvent(PointsToAdd);
-            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
+            DestroyEnemy(PointsToAdd);
         }
     }
     
@@ -89,9 +89,27 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         var viewportPosition = _camera.WorldToViewportPoint(Rb.position);
         if (viewportPosition.x < -0.05f)
         {
-            Destroy(gameObject);
-            var enemyDestroyedEvent = new EnemyDestroyedEvent(0);
-            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
+            DestroyEnemy(0);
+        }
+    }
+
+    private void DestroyEnemy(int points)
+    {
+        Destroy(gameObject);
+        var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
+        ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
+    }
+
+    public void Process(EventData eventData)
+    {
+        if (eventData.EventId == EventIds.GameOver)
+        {
+            DestroyEnemy(0);
         }
     }
 }
