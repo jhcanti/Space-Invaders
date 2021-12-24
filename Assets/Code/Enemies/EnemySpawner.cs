@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EnemiesConfiguration enemiesConfiguration;
+    [SerializeField] private Transform enemiesParentTransform;
 
     private LevelConfiguration _levelConfiguration;
     private EnemyFactory _enemyFactory;
@@ -59,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (var enemyToSpawn in waveConfiguration.EnemiesToSpawn)
         {
-            var enemy = _enemyFactory.Create(enemyToSpawn.EnemyId.Value, enemyToSpawn.SpawnPosition, enemyToSpawn.SpawnRotation);
+            var enemy = _enemyFactory.Create(enemyToSpawn.EnemyId.Value, enemyToSpawn.SpawnPosition, enemyToSpawn.SpawnRotation, enemiesParentTransform);
             enemy.Configure(enemyToSpawn.Health, enemyToSpawn.Speed, enemyToSpawn.FireRate, enemyToSpawn.PointsToAdd);
             _eventQueue.EnqueueEvent(new EnemySpawnEvent());
         }
