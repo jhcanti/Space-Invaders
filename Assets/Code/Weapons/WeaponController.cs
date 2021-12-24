@@ -14,10 +14,10 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
+        _projectileParentTransform = GameObject.FindWithTag("ProjectilesParent").transform;
         var instance = Instantiate(projectilesConfiguration);
         _projectileFactory = new ProjectileFactory(instance);
-        _projectileFactory.Init();
-        _projectileParentTransform = GameObject.FindWithTag("ProjectilesParent").transform;
+        _projectileFactory.Init(_projectileParentTransform);
         var shootPoint = transform.Find("ProjectileSpawnPoint");
         if (shootPoint != null)
             _projectileSpawnPoint = shootPoint;

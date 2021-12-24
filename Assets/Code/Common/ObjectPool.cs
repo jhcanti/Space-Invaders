@@ -15,12 +15,12 @@ public class ObjectPool
         _projectilePrefab = prefab;
     }
 
-    public void Init()
+    public void Init(Transform projectileParentTransform)
     {
         _objectPool = new Queue<Projectile>();
         for (int i = 0; i < SIZE; i++)
         {
-            var obj = Object.Instantiate(_projectilePrefab);
+            var obj = Object.Instantiate(_projectilePrefab, projectileParentTransform);
             obj.gameObject.SetActive(false);
             _objectPool.Enqueue(obj);
         }

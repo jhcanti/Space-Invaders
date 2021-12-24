@@ -13,13 +13,13 @@ public class ProjectileFactory
         _projectileConfiguration = projectileConfiguration;
     }
 
-    public void Init()
+    public void Init(Transform projectileParentTransform)
     {
         _tagToObjectPool = new Dictionary<string, ObjectPool>();
         foreach (var projectile in _projectileConfiguration.GetAllProjectiles())
         {
             var objectPool = new ObjectPool(projectile.Key, projectile.Value);
-            objectPool.Init();
+            objectPool.Init(projectileParentTransform);
             _tagToObjectPool.Add(projectile.Key, objectPool);
         }
     }
