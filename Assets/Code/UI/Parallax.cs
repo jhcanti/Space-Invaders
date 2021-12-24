@@ -7,10 +7,12 @@ public class Parallax : MonoBehaviour
     private Transform[] _backgrounds;
     private float[] _parallaxSpeeds;
     private Vector3[] _startPosition;
+    private bool _isActive;
 
 
     private void Awake()
     {
+        _isActive = false;
         _backgrounds = new Transform[transform.childCount];
         _parallaxSpeeds = new float[transform.childCount];
         _startPosition = new Vector3[transform.childCount];
@@ -26,6 +28,8 @@ public class Parallax : MonoBehaviour
     
     private void Update()
     {
+        if (!_isActive) return;
+        
         for (int i = 0; i < transform.childCount; i++)
         {
             var newPosition = Mathf.Repeat(Time.time * scrollSpeed / _parallaxSpeeds[i], 30f);
@@ -40,5 +44,10 @@ public class Parallax : MonoBehaviour
             _backgrounds[i].GetComponent<SpriteRenderer>().sprite = background;
             _backgrounds[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = background;
         }
+    }
+
+    public void StartParallax()
+    {
+        _isActive = true;
     }
 }

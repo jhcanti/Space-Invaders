@@ -38,6 +38,7 @@ public class LevelSystem : MonoBehaviour
         }
         _uiSystem.HideCountdownText();
         _enemySpawner.StartSpawn(levelConfigurations[_currentLevel]);
+        parallax.StartParallax();
         _playerInstaller.SpawnPlayer();
     }
 
