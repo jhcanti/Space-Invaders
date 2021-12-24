@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LevelSystem : MonoBehaviour
 {
+    [SerializeField] private Parallax parallax;
     [SerializeField] private LevelConfiguration[] levelConfigurations;
     [SerializeField] private int countdownTime;
 
@@ -11,10 +12,6 @@ public class LevelSystem : MonoBehaviour
     private PlayerInstaller _playerInstaller;
     private int _currentLevel;
 
-    // al comenzar el nivel debemos mostrar la cuenta atrás de comienzo del nivel
-    // instanciar al Player
-    // leer el nivel en que estamos y cargar el parallax correspondiente
-    // cuando termine la cuenta atrás empieza la batalla
 
     private void Start()
     {
@@ -23,6 +20,7 @@ public class LevelSystem : MonoBehaviour
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
         _playerInstaller = ServiceLocator.Instance.GetService<PlayerInstaller>();
         StartCoroutine(Countdown());
+        parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
     }
 
     public void ResetAndStart()

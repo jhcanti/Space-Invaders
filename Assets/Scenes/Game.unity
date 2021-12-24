@@ -4616,6 +4616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8ba988368e90e4f8809a810794273c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallax: {fileID: 2063994886}
   levelConfigurations:
   - {fileID: 11400000, guid: ded57973f8e629e4b978c2f4355bd71b, type: 2}
   countdownTime: 3

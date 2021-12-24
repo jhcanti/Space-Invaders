@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField] private Sprite[] backgroundSprites;
     [SerializeField] private float scrollSpeed;
 
     private Transform[] _backgrounds;
@@ -15,21 +14,16 @@ public class Parallax : MonoBehaviour
         _backgrounds = new Transform[transform.childCount];
         _parallaxSpeeds = new float[transform.childCount];
         _startPosition = new Vector3[transform.childCount];
-    }
-
-    private void Start()
-    {
+        
         for (int i = 0; i < transform.childCount; i++)
         {
             _backgrounds[i] = transform.GetChild(i);
             _startPosition[i] = _backgrounds[i].position;
             _parallaxSpeeds[i] = _backgrounds[i].position.z * -1;
-            _backgrounds[i].GetComponent<SpriteRenderer>().sprite = backgroundSprites[i];
-            _backgrounds[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = backgroundSprites[i];
         }
     }
 
-
+    
     private void Update()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -39,4 +33,12 @@ public class Parallax : MonoBehaviour
         }
     }
 
+    public void SetParallaxBackground(Sprite background)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _backgrounds[i].GetComponent<SpriteRenderer>().sprite = background;
+            _backgrounds[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = background;
+        }
+    }
 }
