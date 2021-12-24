@@ -57,6 +57,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     private void HideAllMenus()
     {
         pauseView.Hide();
+        scoreView.Hide();
         gameOverView.Hide();
         victoryView.Hide();
     }
@@ -87,7 +88,11 @@ public class UISystem : MonoBehaviour, IEventObserver
         sequence.Append(countdownText.rectTransform.DOScale(new Vector3(1.5f, 1.5f, 1), .1f).SetEase(Ease.OutSine));
         sequence.Append(countdownText.rectTransform.DOScale(new Vector3(1, 1, 1), .3f).SetEase(Ease.OutSine));
         sequence.Append(countdownCanvasGroup.DOFade(0, .2f));
-        sequence.OnComplete(() => countdownText.gameObject.SetActive(false));
+        sequence.OnComplete(() =>
+        {
+            countdownText.gameObject.SetActive(false);
+            scoreView.Show();
+        });
     }
 
 

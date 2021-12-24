@@ -26,4 +26,14 @@ public class ScoreView : MonoBehaviour
         _currentScore -= points;
         UpdateScore(_currentScore);
     }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
 }
