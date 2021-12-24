@@ -3,9 +3,10 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private ProjectilesConfiguration projectilesConfiguration;
-    [SerializeField] private ProjectileId defaultProyectile;
-    [SerializeField] private Transform projectileSpawnpoint;
-
+    [SerializeField] private ProjectileId defaultProjectile;
+    
+    private Transform _projectileSpawnPoint;
+    private Transform _projectileParentTransform;
     private ProjectileFactory _projectileFactory;
     private float fireRate;
     private float _timeBetweenShoots;
@@ -16,6 +17,10 @@ public class WeaponController : MonoBehaviour
         var instance = Instantiate(projectilesConfiguration);
         _projectileFactory = new ProjectileFactory(instance);
         _projectileFactory.Init();
+        _projectileParentTransform = GameObject.FindWithTag("ProjectilesParent").transform;
+        var shootPoint = transform.Find("ProjectileSpawnPoint");
+        if (shootPoint != null)
+            _projectileSpawnPoint = shootPoint;
     }
 
     public void Configure(float fireRate, Teams team)
@@ -34,7 +39,8 @@ public class WeaponController : MonoBehaviour
 
     private void Shoot()
     {
-        var projectile = _projectileFactory.SpawnFromPool(defaultProyectile.Value, projectileSpawnpoint.position, projectileSpawnpoint.rotation, _team);
+        var projectile = _projectileFactory.SpawnFromPool(defaultProjectile.Value, _projectileSpawnPoint.position,
+                        _projectileSpawnPoint.rotation, _projectileParentTransform, _team);
         _timeBetweenShoots = Time.time + fireRate;
     }
 }

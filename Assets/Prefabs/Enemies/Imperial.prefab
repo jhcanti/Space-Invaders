@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8904234552485525166}
   m_Layer: 7
-  m_Name: ShootPoint
+  m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,8 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilesConfiguration: {fileID: 11400000, guid: 9e4121bf18760af4db12110f69bdc314, type: 2}
-  defaultProyectile: {fileID: 11400000, guid: 87ee850d531772d47a64df1de5cd8c97, type: 2}
-  projectileSpawnpoint: {fileID: 8904234552485525166}
+  defaultProjectile: {fileID: 11400000, guid: 87ee850d531772d47a64df1de5cd8c97, type: 2}
 --- !u!114 &7404683553466059705
 MonoBehaviour:
   m_ObjectHideFlags: 0

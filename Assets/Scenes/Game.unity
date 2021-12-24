@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesConfiguration: {fileID: 11400000, guid: 13ebd8306fe8a2a419dea54b633817ec, type: 2}
+  enemiesParentTransform: {fileID: 1544703232}
 --- !u!1 &138412913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,7 +3327,7 @@ GameObject:
   - component: {fileID: 1301164079}
   m_Layer: 0
   m_Name: ProjectilesParent
-  m_TagString: Untagged
+  m_TagString: ProjectilesParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3844,7 +3845,7 @@ GameObject:
   - component: {fileID: 1544703232}
   m_Layer: 0
   m_Name: EnemiesParent
-  m_TagString: Untagged
+  m_TagString: EnemiesParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

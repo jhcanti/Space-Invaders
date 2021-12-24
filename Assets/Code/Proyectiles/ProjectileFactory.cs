@@ -24,14 +24,14 @@ public class ProjectileFactory
         }
     }
 
-    public Projectile SpawnFromPool(string id, Vector3 position, Quaternion rotation, Teams team)
+    public Projectile SpawnFromPool(string id, Vector3 position, Quaternion rotation, Transform projectileParentTransform, Teams team)
     {
         if (!_tagToObjectPool.TryGetValue(id, out var pool))
         {
             throw new Exception($"Pool with Id {id} does not exists");
         }
 
-        var projectile = pool.SpawnFromPool(position, rotation, team);
+        var projectile = pool.SpawnFromPool(position, rotation, projectileParentTransform, team);
         return projectile;
     }
 
