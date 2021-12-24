@@ -25,6 +25,7 @@ public class LevelSystem : MonoBehaviour
 
     public void ResetAndStart()
     {
+        _uiSystem.HideAllMenus();
         StartCoroutine(Countdown());
     }
 

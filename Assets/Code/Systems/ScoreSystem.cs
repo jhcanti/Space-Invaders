@@ -24,7 +24,7 @@
     {
         _uISystem = ServiceLocator.Instance.GetService<UISystem>();
         _globalScore = 0;
-        Reset();
+        _levelScore = 0;
     }
 
 

@@ -54,7 +54,7 @@ public class UISystem : MonoBehaviour, IEventObserver
         _eventQueue.Unsubscribe(EventIds.Victory, this);
     }
 
-    private void HideAllMenus()
+    public void HideAllMenus()
     {
         pauseView.Hide();
         scoreView.Hide();
