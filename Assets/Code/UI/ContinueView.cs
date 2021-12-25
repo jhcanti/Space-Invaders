@@ -31,7 +31,7 @@ public class ContinueView : MonoBehaviour
     
     private void GameOver()
     {
-        
+        _uiSystem.OnGameOver();
     }
 
     private void RestartLevel()

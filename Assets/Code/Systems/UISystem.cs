@@ -126,7 +126,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     public void OnRestartPressed()
     {
-        gameOverView.Hide();
+        continueView.Hide();
         _eventQueue.EnqueueEvent(new RestartEvent());
     }
 
@@ -135,11 +135,17 @@ public class UISystem : MonoBehaviour, IEventObserver
         _eventQueue.EnqueueEvent(new BackToMenuEvent());
     }
 
-    private void OnGameOver()
+    private void OnPlayerDead()
     {
-        gameOverView.Show(scoreView.CurrentScore);
+        continueView.Show();
     }
 
+    public void OnGameOver()
+    {
+        continueView.Hide();
+        gameOverView.Show(scoreView.CurrentScore);
+    }
+    
     private void OnVictory()
     {
         victoryView.Show(scoreView.CurrentScore);
@@ -149,7 +155,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         if (eventData.EventId == EventIds.GameOver)
         {
-            OnGameOver();
+            OnPlayerDead();
         }
 
         if (eventData.EventId == EventIds.Victory)
