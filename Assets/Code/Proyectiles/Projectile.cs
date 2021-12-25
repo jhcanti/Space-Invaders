@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Projectile : MonoBehaviour, IEventObserver
@@ -79,5 +80,11 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
         {
             DeactivateProjectile();
         }
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);       
     }
 }
