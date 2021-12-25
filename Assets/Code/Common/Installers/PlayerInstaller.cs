@@ -18,13 +18,8 @@ public class PlayerInstaller : MonoBehaviour
         _player.IsActive = false;
     }
 
-    public void SetPlayerActive()
+    public void DestroyPlayer()
     {
-        _player.IsActive = true;
-    }
-    
-    public void ResetPlayerPosition()
-    {
-        _player.transform.position = playerSpawnPosition.position;
+        Destroy(_player.gameObject);
     }
 }

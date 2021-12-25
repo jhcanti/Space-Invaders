@@ -10,13 +10,11 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     private UISystem _uiSystem;
     private EnemySpawner _enemySpawner;
     private PlayerInstaller _playerInstaller;
-    private bool _isPlayerSpawned;
     private int _currentLevel;
 
 
     private void Start()
     {
-        _isPlayerSpawned = false;
         _currentLevel = 0;
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
@@ -30,7 +28,6 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     public void ResetAndStart()
     {
         _uiSystem.HideAllMenus();
-        _isPlayerSpawned = false;
         StartCoroutine(Countdown());
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new RestartLevelCompleteEvent());
     }
@@ -40,8 +37,6 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         _uiSystem.HideAllMenus();
         parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
         StartCoroutine(Countdown());
-        _playerInstaller.ResetPlayerPosition();
-        _playerInstaller.SetPlayerActive();
     }
 
     private IEnumerator Countdown()
@@ -55,11 +50,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         _uiSystem.HideCountdownText();
         _enemySpawner.StartSpawn(levelConfigurations[_currentLevel]);
         parallax.StartParallax();
-        if (!_isPlayerSpawned)
-        {
-            _playerInstaller.SpawnPlayer();
-            _isPlayerSpawned = true;
-        }
+        _playerInstaller.SpawnPlayer();
     }
 
     public void Process(EventData eventData)
