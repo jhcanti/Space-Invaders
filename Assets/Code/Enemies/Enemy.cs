@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
@@ -7,6 +6,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     public string Id => id.Value;
 
     [SerializeField] private EnemyId id;
+    [SerializeField] protected AnimationCurve VerticalMovement;
     [SerializeField] private int damageForImpact;
 
     protected Rigidbody2D Rb;
