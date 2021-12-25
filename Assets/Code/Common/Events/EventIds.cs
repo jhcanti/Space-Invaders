@@ -2,6 +2,7 @@
 {
     StartGamePressed,
     NoContinue,
+    NextLevel,
     GoToHighScore,
     BackToMenu,
     GameOver,

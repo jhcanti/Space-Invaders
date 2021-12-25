@@ -1,8 +1,10 @@
+using UnityEngine;
+
 public class VictoryState : IState, IEventObserver
 {
     private readonly GameManager _gameManager;
     private EventQueue _eventQueue;
-    private bool _menuButtonPressed;
+    private bool _nextLevel;
 
     public VictoryState(GameManager gameManager)
     {
@@ -11,28 +13,29 @@ public class VictoryState : IState, IEventObserver
     
     public void Tick()
     {
-        if (_menuButtonPressed)
-            _gameManager.CurrentGameState = GameStates.InMenu;
+        if (_nextLevel)
+            _gameManager.CurrentGameState = GameStates.Playing;
     }
 
     public void OnEnter()
     {
-        _menuButtonPressed = false;
+        Debug.Log("Victory State");
+        _nextLevel = false;
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
-        _eventQueue.Subscribe(EventIds.BackToMenu, this);
+        _eventQueue.Subscribe(EventIds.NextLevel, this);
         _eventQueue.EnqueueEvent(new VictoryEvent());
     }
 
     public void OnExit()
     {
-        _eventQueue.Unsubscribe(EventIds.BackToMenu, this);
+        _eventQueue.Unsubscribe(EventIds.NextLevel, this);
     }
 
     public void Process(EventData eventData)
     {
-        if (eventData.EventId == EventIds.BackToMenu)
+        if (eventData.EventId == EventIds.NextLevel)
         {
-            _menuButtonPressed = true;
+            _nextLevel = true;
         }
     }
 }

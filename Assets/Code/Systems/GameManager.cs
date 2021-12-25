@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         AddTransition(_gameOver, _restartLevel, OnStateRestartLevel());
         AddTransition(_restartLevel, _playing, OnStatePlaying());
         AddTransition(_victory, _inMenu, OnStateInMenu());
+        AddTransition(_victory, _playing, OnStatePlaying());
             
         void AddTransition(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
             

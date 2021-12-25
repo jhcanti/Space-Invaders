@@ -32,6 +32,6 @@ public class VictoryView : MonoBehaviour
 
     private void NextLevel()
     {
-        
+        _uiSystem.OnNextLevelPressed();
     }
 }

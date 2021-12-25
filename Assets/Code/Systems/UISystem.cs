@@ -15,7 +15,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     private EventQueue _eventQueue;
     private IInput _input;
-    private bool IsGamePaused;
+    private bool _isGamePaused;
 
 
     private void Awake()
@@ -40,7 +40,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         if (!_input.IsPausePressed()) return;
 
-        if (IsGamePaused)
+        if (_isGamePaused)
         {
             OnResumePressed();
         }
@@ -99,7 +99,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     }
 
 
-    public void ResetScore(int points)
+    public void SubtractLevelScore(int points)
     {
         scoreView.SubtractScore(points);
     }
@@ -113,14 +113,14 @@ public class UISystem : MonoBehaviour, IEventObserver
     public void OnPausePressed()
     {
         pauseView.Show();
-        IsGamePaused = true;
+        _isGamePaused = true;
         new PauseGameCommand().Execute();
     }
 
     public void OnResumePressed()
     {
         pauseView.Hide();
-        IsGamePaused = false;
+        _isGamePaused = false;
         new ResumeGameCommand().Execute();
     }
 
@@ -135,6 +135,11 @@ public class UISystem : MonoBehaviour, IEventObserver
         _eventQueue.EnqueueEvent(new BackToMenuEvent());
     }
 
+    public void OnNextLevelPressed()
+    {
+        _eventQueue.EnqueueEvent(new NextLevelEvent());
+    }
+    
     private void OnPlayerDead()
     {
         continueView.Show();

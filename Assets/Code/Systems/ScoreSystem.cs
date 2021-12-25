@@ -28,12 +28,16 @@
     }
 
 
-    public void Reset()
+    public void SubtractLevelScore()
     {
-        _uISystem.ResetScore(_levelScore);
+        _uISystem.SubtractLevelScore(_levelScore);
         _levelScore = 0;
     }
 
+    public void ResetLevelScore()
+    {
+        _levelScore = 0;
+    }
 
     public void Process(EventData eventData)
     {
