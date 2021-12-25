@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilesConfiguration: {fileID: 11400000, guid: 9e4121bf18760af4db12110f69bdc314, type: 2}
-  defaultProjectile: {fileID: 11400000, guid: 87ee850d531772d47a64df1de5cd8c97, type: 2}
+  defaultProjectile: {fileID: 11400000, guid: 88fda988636fcac4f971d1e99886265f, type: 2}
 --- !u!114 &7404683553466059705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,4 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: abc5ab2569bc75c4b8b6abfa2b0f12c5, type: 2}
+  VerticalMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   damageForImpact: 100
