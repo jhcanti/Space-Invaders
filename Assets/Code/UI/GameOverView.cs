@@ -1,22 +1,16 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameOverView : MonoBehaviour
 {
-    [SerializeField] private Button restartButton;
-    [SerializeField] private Button menuButton;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TMP_InputField namePlayer;
-
 
     private UISystem _uiSystem;
 
     private void Awake()
     {
-        restartButton.onClick.AddListener(RestartLevel);
-        menuButton.onClick.AddListener(BackToMainMenu);
         namePlayer.onEndEdit.AddListener(SaveData);
     }
 
@@ -36,17 +30,6 @@ public class GameOverView : MonoBehaviour
         gameObject.SetActive(true);
         scoreText.SetText(score.ToString());
         namePlayer.Select();
-    }
-
-
-    private void RestartLevel()
-    {
-        _uiSystem.OnRestartPressed();
-    }
-
-    private void BackToMainMenu()
-    {
-        _uiSystem.OnMenuPressed();
     }
 
     private void SaveData(string arg0)

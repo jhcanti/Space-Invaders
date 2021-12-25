@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class VictoryView : MonoBehaviour
 {
     [SerializeField] private Button nextLevelButton;
-    [SerializeField] private Button menuButton;
     [SerializeField] private TextMeshProUGUI scoreText;
     
     private UISystem _uiSystem;
@@ -13,7 +12,6 @@ public class VictoryView : MonoBehaviour
     private void Awake()
     {
         nextLevelButton.onClick.AddListener(NextLevel);
-        menuButton.onClick.AddListener(BackToMainMenu);
     }
     
     public void Configure(UISystem uiSystem)
@@ -35,10 +33,5 @@ public class VictoryView : MonoBehaviour
     private void NextLevel()
     {
         
-    }
-
-    private void BackToMainMenu()
-    {
-        _uiSystem.OnMenuPressed();
     }
 }
