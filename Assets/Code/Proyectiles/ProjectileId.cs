@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Weapons/New projectile")]
 public class ProjectileId : ScriptableObject
 {
-    [SerializeField] private string _projectileId;    
+    [SerializeField] private string projectileId;    
 
-    public string Value => _projectileId;
+    public string Value => projectileId;
 }
