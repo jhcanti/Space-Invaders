@@ -1,6 +1,7 @@
 ﻿public enum EventIds
 {
     StartGamePressed,
+    NoContinue,
     GoToHighScore,
     BackToMenu,
     GameOver,

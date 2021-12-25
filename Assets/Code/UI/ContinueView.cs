@@ -11,7 +11,7 @@ public class ContinueView : MonoBehaviour
     private void Awake()
     {
         yesButton.onClick.AddListener(RestartLevel);
-        noButton.onClick.AddListener(GameOver);
+        noButton.onClick.AddListener(NoContinue);
     }
 
     public void Configure(UISystem uiSystem)
@@ -29,7 +29,7 @@ public class ContinueView : MonoBehaviour
         gameObject.SetActive(true);
     }
     
-    private void GameOver()
+    private void NoContinue()
     {
         _uiSystem.OnGameOver();
     }

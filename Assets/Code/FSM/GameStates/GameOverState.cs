@@ -1,4 +1,7 @@
-﻿public class GameOverState : IState, IEventObserver
+﻿using System;
+using System.Threading.Tasks;
+
+public class GameOverState : IState, IEventObserver
 {
     private readonly GameManager _gameManager;
     private EventQueue _eventQueue;
@@ -20,6 +23,7 @@
         _restartButtonPressed = false;
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.RestartPressed, this);
+        _eventQueue.Subscribe(EventIds.NoContinue, this);
         _eventQueue.EnqueueEvent(new GameOverEvent());
         new StopAndResetCommand().Execute();
     }
@@ -27,6 +31,7 @@
     public void OnExit()
     {
         _eventQueue.Unsubscribe(EventIds.RestartPressed, this);
+        _eventQueue.Unsubscribe(EventIds.NoContinue, this);
     }
 
     public void Process(EventData eventData)
@@ -35,5 +40,16 @@
         {
             _restartButtonPressed = true;
         }
+
+        if (eventData.EventId == EventIds.NoContinue)
+        {
+            Countdown();
+        }
+    }
+
+    private async void Countdown()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(5));
+        _gameManager.CurrentGameState = GameStates.InMenu;
     }
 }

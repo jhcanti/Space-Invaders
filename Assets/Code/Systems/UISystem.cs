@@ -144,6 +144,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         continueView.Hide();
         gameOverView.Show(scoreView.CurrentScore);
+        _eventQueue.EnqueueEvent(new NoContinueEvent());
     }
     
     private void OnVictory()
