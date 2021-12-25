@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f67aeec233f34cb98439c194a4fa7, type: 3}
   m_Name: Phantom To Spawn
   m_EditorClassIdentifier: 
-  enemyId: {fileID: 0}
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotation: {x: 0, y: 0, z: 0, w: 0}
-  health: 0
-  speed: 0
-  fireRate: 0
-  pointsToAdd: 0
+  enemyId: {fileID: 11400000, guid: d13a4bc4e3d98d64c9876fa0a1f5fceb, type: 2}
+  spawnPosition: {x: 16.68, y: 6.91, z: 0}
+  spawnRotation: {x: 0, y: 0, z: 180, w: 0}
+  health: 40
+  speed: 6
+  fireRate: 1
+  pointsToAdd: 30

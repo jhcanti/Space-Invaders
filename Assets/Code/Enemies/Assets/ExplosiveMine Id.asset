@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e29124fc4de7e548b0eeea85fca6275, type: 3}
   m_Name: ExplosiveMine Id
   m_EditorClassIdentifier: 
-  enemyId: explosive mine
+  enemyId: Explosive Mine

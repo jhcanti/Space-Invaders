@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c543d33a2d61044c89d009c8faffeae, type: 3}
   m_Name: Curve Projectile Id
   m_EditorClassIdentifier: 
-  _projectileId: 
+  projectileId: 
