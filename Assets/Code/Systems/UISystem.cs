@@ -33,7 +33,6 @@ public class UISystem : MonoBehaviour, IEventObserver
         _input = ServiceLocator.Instance.GetService<IInput>();
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.GameOver, this);
-        _eventQueue.Subscribe(EventIds.Victory, this);
     }
 
     private void Update()
@@ -53,7 +52,6 @@ public class UISystem : MonoBehaviour, IEventObserver
     private void OnDestroy()
     {
         _eventQueue.Unsubscribe(EventIds.GameOver, this);
-        _eventQueue.Unsubscribe(EventIds.Victory, this);
     }
 
     public void HideAllMenus()
@@ -152,7 +150,7 @@ public class UISystem : MonoBehaviour, IEventObserver
         _eventQueue.EnqueueEvent(new NoContinueEvent());
     }
     
-    private void OnVictory()
+    public void OnVictory()
     {
         victoryView.Show(scoreView.CurrentScore);
     }
@@ -162,11 +160,6 @@ public class UISystem : MonoBehaviour, IEventObserver
         if (eventData.EventId == EventIds.GameOver)
         {
             OnPlayerDead();
-        }
-
-        if (eventData.EventId == EventIds.Victory)
-        {
-            OnVictory();
         }
     }
 }

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class VictoryState : IState, IEventObserver
 {
     private readonly GameManager _gameManager;
@@ -19,7 +17,6 @@ public class VictoryState : IState, IEventObserver
 
     public void OnEnter()
     {
-        Debug.Log("Victory State");
         _nextLevel = false;
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.NextLevel, this);

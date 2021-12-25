@@ -22,6 +22,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
         _playerInstaller = ServiceLocator.Instance.GetService<PlayerInstaller>();
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.NextLevel, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         StartCoroutine(Countdown());
         parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
     }
@@ -36,13 +37,6 @@ public class LevelSystem : MonoBehaviour, IEventObserver
 
     public void NextLevel()
     {
-        _currentLevel++;
-        if (_currentLevel == levelConfigurations.Length)
-        {
-            Debug.Log("Falta incluir el codigo para ganar el juego");
-            return;
-        }
-   
         _uiSystem.HideAllMenus();
         parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
         StartCoroutine(Countdown());
@@ -74,10 +68,24 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         {
             new NextLevelCommand().Execute();
         }
+
+        if (eventData.EventId == EventIds.Victory)
+        {
+            _currentLevel++;
+            if (_currentLevel == levelConfigurations.Length)
+            {
+                Debug.Log("Falta incluir el codigo para ganar el juego");
+            }
+            else
+            {
+                _uiSystem.OnVictory();
+            }
+        }
     }
 
     private void OnDestroy()
     {
         ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.NextLevel, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
     }
 }

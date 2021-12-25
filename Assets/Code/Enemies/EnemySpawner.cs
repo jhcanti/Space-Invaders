@@ -38,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Can Spawn: " + _canSpawn);
         if (!_canSpawn) return;
 
         if (_currentWaveIndex >= _levelConfiguration.WaveConfigurations.Length) return;
@@ -54,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
         if (_currentWaveIndex >= _levelConfiguration.WaveConfigurations.Length)
         {
             _eventQueue.EnqueueEvent(new AllEnemiesSpawnedEvent());
+            _canSpawn = false;
         }
     }
 
