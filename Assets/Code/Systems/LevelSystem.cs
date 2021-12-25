@@ -41,6 +41,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
 
     private IEnumerator Countdown()
     {
+        parallax.StopParallax();
         _uiSystem.ShowCountdown(_currentLevel+1);
         for (int i = countdownTime; i > 0; i--)
         {

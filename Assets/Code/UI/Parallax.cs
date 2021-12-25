@@ -50,4 +50,9 @@ public class Parallax : MonoBehaviour
     {
         _isActive = true;
     }
+
+    public void StopParallax()
+    {
+        _isActive = false;
+    }
 }
