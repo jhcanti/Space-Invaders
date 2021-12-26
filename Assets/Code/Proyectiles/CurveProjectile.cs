@@ -5,12 +5,10 @@ public class CurveProjectile : Projectile
     private Vector3 _currentPosition;
     private float _currentTime;
     
-    protected override void DoInit(Vector3 position, Quaternion rotation)
+    protected override void DoInit()
     {
-        MyTransform.position = position;
-        MyTransform.rotation = rotation;
         _currentTime = 0;
-        _currentPosition = position;
+        _currentPosition = MyTransform.position;
     }
 
     protected override void DoMove()

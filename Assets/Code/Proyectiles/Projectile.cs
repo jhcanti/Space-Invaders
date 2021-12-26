@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Projectile : MonoBehaviour, IEventObserver
@@ -27,17 +26,19 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
         _camera = Camera.main;
     }
 
-    public void Init(Vector3 position, Quaternion rotation, Teams team)
+    public void Init(Transform spawnPoint, Teams team)
     {
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
         MyTransform = transform;
         Active = true;
         Team = team;
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
-        DoInit(position, rotation);
+        DoInit();
     }
 
-    protected abstract void DoInit(Vector3 position, Quaternion rotation);
+    protected abstract void DoInit();
 
     private void FixedUpdate()
     {

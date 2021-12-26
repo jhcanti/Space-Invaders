@@ -2,10 +2,8 @@
 
 public class LinearProjectile : Projectile
 {    
-    protected override void DoInit(Vector3 position, Quaternion rotation)
+    protected override void DoInit()
     {
-        MyTransform.position = position;
-        MyTransform.rotation = rotation;
         Rb.velocity = MyTransform.right * Speed;
     }
 
