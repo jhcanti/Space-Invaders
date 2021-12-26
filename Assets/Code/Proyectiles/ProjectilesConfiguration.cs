@@ -5,18 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapons/Projectile configuration")]
 public class ProjectilesConfiguration : ScriptableObject
 {
+    public Dictionary<string, Projectile> IdToProjectilePrefabs => _idToProjectilePrefab;
+    
     [SerializeField] private Projectile[] projectilePrefabs;
     private Dictionary<string, Projectile> _idToProjectilePrefab;
-    private List<string> _projectileIds;
 
     private void Awake()
     {
         _idToProjectilePrefab = new Dictionary<string, Projectile>();
-        _projectileIds = new List<string>();
         foreach (var projectile in projectilePrefabs)
         {
             _idToProjectilePrefab.Add(projectile.Id, projectile);
-            _projectileIds.Add(projectile.Id);
         }
     }
 
@@ -28,10 +27,5 @@ public class ProjectilesConfiguration : ScriptableObject
         }
 
         return projectile;
-    }
-
-    public List<string> GetAllProjectileIds()
-    {
-        return _projectileIds;
     }
 }

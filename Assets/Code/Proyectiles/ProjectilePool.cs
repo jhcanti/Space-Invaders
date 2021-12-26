@@ -7,68 +7,59 @@ public class ProjectilePool : MonoBehaviour
 
     [SerializeField] private ProjectilesConfiguration projectilesConfiguration;
     [SerializeField] private Transform projectileParentTransform;
-    
+    [SerializeField] private int poolSize = 10;
+
+    private ProjectilesConfiguration _projectilesConfiguration;
     private ProjectileFactory _projectileFactory;
-    private Queue<Projectile> _projectiles = new Queue<Projectile>();
-    private List<string> _projectileIds;
+    private Dictionary<string, Queue<Projectile>> _poolDictionary = new Dictionary<string, Queue<Projectile>>();
     private Projectile _projectile;
 
 
     private void Awake()
     {
         Instance = this;
-        var instance = Instantiate(projectilesConfiguration);
-        _projectileFactory = new ProjectileFactory(instance);
+        _projectilesConfiguration = Instantiate(projectilesConfiguration);
+        _projectileFactory = new ProjectileFactory(_projectilesConfiguration);
     }
 
     private void Start()
     {
-        _projectileIds = projectilesConfiguration.GetAllProjectileIds();
-        foreach (var projectileId in _projectileIds)
+        foreach (var projectileType in _projectilesConfiguration.IdToProjectilePrefabs)
         {
-            AddProjectile(projectileId, 40);
+            var projectilePool = new Queue<Projectile>();
+            AddProjectile(projectileType.Key, projectilePool, poolSize);
+            _poolDictionary.Add(projectileType.Key, projectilePool);
+            Debug.Log(projectileType.Key + " - " + projectilePool);
         }
     }
 
+    
     public Projectile Get(string id)
     {
-        var found = false;
-        while (!found)
-        {
-            _projectile = _projectiles.Dequeue();
-            if (_projectile.Id != id)
-            {
-                _projectiles.Enqueue(_projectile);
-            }
-            else
-            {
-                if (_projectile.gameObject.activeInHierarchy == false)
-                {
-                    found = true;
-                }
-                else
-                {
-                    _projectiles.Enqueue(_projectile);
-                }
-            }
-        }
-
-        return _projectile;
+        var pool = _poolDictionary[id];
+        if (pool.Count == 0)
+            AddProjectile(id, pool, 1);
+        
+        return pool.Dequeue();
     }
-
-    private void AddProjectile(string id, int count)
+    
+    
+    private void AddProjectile(string id, Queue<Projectile> pool, int size)
     {
-        for (var i = 0; i < count; i++)
+        for (var i = 0; i < size; i++)
         {
             var projectile = _projectileFactory.Create(id, projectileParentTransform);
             projectile.gameObject.SetActive(false);
-            _projectiles.Enqueue(projectile);
+            pool.Enqueue(projectile);
         }
     }
 
-    public void ReturnToPool(Projectile projectile)
+    
+    public void ReturnToPool(Projectile projectile, string id)
     {
         projectile.gameObject.SetActive(false);
-        _projectiles.Enqueue(projectile);
+        var pool = _poolDictionary[id];
+        pool.Enqueue(projectile);
     }
+    
 }

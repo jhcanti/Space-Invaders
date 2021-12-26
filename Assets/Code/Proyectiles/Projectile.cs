@@ -72,7 +72,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
     {
         DoDeactivate();
         Active = false;
-        ProjectilePool.Instance.ReturnToPool(this);
+        ProjectilePool.Instance.ReturnToPool(this, id.Value);
     }
 
     protected abstract void DoDeactivate();
