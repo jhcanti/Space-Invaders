@@ -6,6 +6,7 @@ public class LevelInstaller : MonoBehaviour
     [SerializeField] private UISystem uiSystem;
     [SerializeField] private LevelSystem levelSystem;
     [SerializeField] private PlayerInstaller playerInstaller;
+    [SerializeField] private PowerUpSpawner powerUpSpawner;
 
 
     private void Awake()
@@ -14,6 +15,7 @@ public class LevelInstaller : MonoBehaviour
         ServiceLocator.Instance.RegisterService(uiSystem);
         ServiceLocator.Instance.RegisterService(levelSystem);
         ServiceLocator.Instance.RegisterService(playerInstaller);
+        ServiceLocator.Instance.RegisterService(powerUpSpawner);
     }
 
     private void Start()
@@ -27,5 +29,6 @@ public class LevelInstaller : MonoBehaviour
         ServiceLocator.Instance.UnregisterService<UISystem>();
         ServiceLocator.Instance.UnregisterService<LevelSystem>();
         ServiceLocator.Instance.UnregisterService<PlayerInstaller>();
+        ServiceLocator.Instance.UnregisterService<PowerUpSpawner>();
     }
 }
