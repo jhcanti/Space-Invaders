@@ -12,5 +12,6 @@
     EnemySpawned,
     AllEnemiesSpawned,
     PlayerDestroyed,
-    RestartLevelComplete
+    RestartLevelComplete,
+    SpawnPowerUp
 }
