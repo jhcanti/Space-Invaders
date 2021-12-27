@@ -3,13 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create/EnemyToSpawn")]
 public class EnemyToSpawn : ScriptableObject
 {
-    [System.Serializable]
-    public struct PowerUpProbability
-    {
-        public PowerUpId PowerUpId;
-        public float Probability;
-    }
-    
     [SerializeField] private EnemyId enemyId;
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private Quaternion spawnRotation;

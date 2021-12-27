@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpSpawner : MonoBehaviour
+public class PowerUpSpawner : MonoBehaviour, IEventObserver
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PowerUpsConfiguration powerUpsConfiguration;
+    [SerializeField] private Transform powerUpParentTransform;
+    
+    private PowerUpFactory _powerUpFactory;
+    private EventQueue _eventQueue;
+    
+    
+    private void Awake()
     {
-        
+        var instance = Instantiate(powerUpsConfiguration);
+        _powerUpFactory = new PowerUpFactory(instance);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
+        _eventQueue.Subscribe(EventIds.SpawnPowerUp, this);
+    }
+
+    public void Process(EventData eventData)
+    {
+        if (eventData.EventId == EventIds.SpawnPowerUp)
+        {
+            var spawnPowerUpData = (SpawnPowerUpEvent) eventData;
+            var powerUp = _powerUpFactory.Create(spawnPowerUpData.PowerUpId, spawnPowerUpData.SpawnPosition,
+                Quaternion.identity, powerUpParentTransform);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _eventQueue.Unsubscribe(EventIds.SpawnPowerUp, this);
     }
 }

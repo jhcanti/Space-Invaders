@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (var enemyToSpawn in waveConfiguration.EnemiesToSpawn)
         {
             var enemy = _enemyFactory.Create(enemyToSpawn.EnemyId.Value, enemyToSpawn.SpawnPosition, enemyToSpawn.SpawnRotation, enemiesParentTransform);
-            enemy.Configure(enemyToSpawn.Health, enemyToSpawn.Speed, enemyToSpawn.FireRate, enemyToSpawn.PointsToAdd);
+            enemy.Configure(enemyToSpawn.Health, enemyToSpawn.Speed, enemyToSpawn.FireRate, enemyToSpawn.PointsToAdd, enemyToSpawn.PowerUpProbabilities);
             _eventQueue.EnqueueEvent(new EnemySpawnEvent());
         }
     }

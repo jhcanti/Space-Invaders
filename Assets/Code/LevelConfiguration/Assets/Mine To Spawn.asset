@@ -19,3 +19,4 @@ MonoBehaviour:
   speed: 4
   fireRate: 0
   pointsToAdd: 10
+  _powerUpProbabilities: []

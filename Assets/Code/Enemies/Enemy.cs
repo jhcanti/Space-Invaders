@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     protected int PointsToAdd;
     protected Transform MyTransform;
     private Camera _camera;
+    private PowerUpProbability[] _powerUpProbabilities;
 
 
     private void Awake()
@@ -33,13 +34,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         _camera = Camera.main;
     }
 
-    public void Configure(int health, float speed, float fireRate, int pointsToAdd)
+    public void Configure(int health, float speed, float fireRate, int pointsToAdd, PowerUpProbability[] powerUpProbabilities)
     {
         MyTransform = transform;
         Health = health;
         Speed = speed;
         FireRate = fireRate;
         PointsToAdd = pointsToAdd;
+        _powerUpProbabilities = powerUpProbabilities;
         HealthController.Init(Health);
         WeaponController.Configure(FireRate, Team);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
@@ -98,6 +100,31 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         Destroy(gameObject);
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
+        
+        if (points > 0)
+        {
+            // aqui instanciaremos la explosión
+
+            CalculatePowerUpSpawn();
+        }
+    }
+
+    private void CalculatePowerUpSpawn()
+    {
+        var number = Random.Range(0f, 100f);
+        Debug.Log("Number: " + number);
+
+        foreach (var powerUpProbability in _powerUpProbabilities)
+        {
+            if (number >= powerUpProbability.MinimumRange && number <= powerUpProbability.MaximumRange)
+            {
+                Debug.Log("Minimum: " + powerUpProbability.MinimumRange);
+                Debug.Log("Maximum: " + powerUpProbability.MaximumRange);
+                var spawnPowerUpEvent = new SpawnPowerUpEvent(powerUpProbability.PowerUpId.Value, transform.position);
+                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(spawnPowerUpEvent);
+                return;
+            }
+        }
     }
 
     private void OnDestroy()
