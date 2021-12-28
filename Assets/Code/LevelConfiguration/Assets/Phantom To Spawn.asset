@@ -20,6 +20,6 @@ MonoBehaviour:
   fireRate: 1
   pointsToAdd: 30
   _powerUpProbabilities:
-  - PowerUpId: {fileID: 11400000, guid: 0f30e5c872ab9104b88de2cdd91bf76d, type: 2}
+  - PowerUpId: {fileID: 11400000, guid: fe3f6758c686029419c3fb43a680e457, type: 2}
     MinimumRange: 0
     MaximumRange: 100
