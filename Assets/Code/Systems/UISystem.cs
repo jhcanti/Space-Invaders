@@ -14,6 +14,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     [SerializeField] private CanvasGroup countdownCanvasGroup;
 
     private EventQueue _eventQueue;
+    private IScoreSystem _scoreSystem;
     private IInput _input;
     private bool _isGamePaused;
 
@@ -33,6 +34,7 @@ public class UISystem : MonoBehaviour, IEventObserver
         _input = ServiceLocator.Instance.GetService<IInput>();
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.GameOver, this);
+        _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
     }
 
     private void Update()
@@ -146,7 +148,8 @@ public class UISystem : MonoBehaviour, IEventObserver
     public void OnGameOver()
     {
         continueView.Hide();
-        gameOverView.Show(scoreView.CurrentScore);
+        var showInput = scoreView.CurrentScore > _scoreSystem.GetMinimumScoreTopTen();
+        gameOverView.Show(_scoreSystem.GetHighScore(), scoreView.CurrentScore, showInput);
         _eventQueue.EnqueueEvent(new NoContinueEvent());
     }
     

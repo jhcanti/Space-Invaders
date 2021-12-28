@@ -1,4 +1,6 @@
-﻿public class ScoreSystem : IEventObserver, IScoreSystem
+﻿using UnityEngine;
+
+public class ScoreSystem : IEventObserver, IScoreSystem
 {
     public int GlobalScore => _globalScore;
     public int LevelScore => _levelScore;
@@ -100,6 +102,18 @@
         return userData;
     }
 
+    public int GetMinimumScoreTopTen()
+    {
+        var userData = _dataStore.GetData<UserData>(Userdata) ?? new UserData();
+        return userData.BestScores[9];
+    }
+
+    public int GetHighScore()
+    {
+        var userData = _dataStore.GetData<UserData>(Userdata) ?? new UserData();
+        return userData.BestScores[0];
+    }
+    
     public void SaveUserData(string[] playerNames, int[] bestScores)
     {
         var userData = new UserData { PlayerNames = playerNames, BestScores = bestScores };

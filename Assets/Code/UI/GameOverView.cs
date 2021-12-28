@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameOverView : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject nameInput;
     [SerializeField] private TMP_InputField namePlayer;
 
     private UISystem _uiSystem;
@@ -25,10 +27,15 @@ public class GameOverView : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Show(int score)
+    public void Show(int highScore, int score, bool showInput)
     {
         gameObject.SetActive(true);
+        nameInput.SetActive(false);
+        highScoreText.SetText(highScore.ToString());
         scoreText.SetText(score.ToString());
+        if (showInput == false) return;
+        
+        nameInput.SetActive(true);
         namePlayer.Select();
     }
 
