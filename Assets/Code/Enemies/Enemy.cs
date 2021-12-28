@@ -112,14 +112,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     private void CalculatePowerUpSpawn()
     {
         var number = Random.Range(0f, 100f);
-        Debug.Log("Number: " + number);
 
         foreach (var powerUpProbability in _powerUpProbabilities)
         {
             if (number >= powerUpProbability.MinimumRange && number <= powerUpProbability.MaximumRange)
             {
-                Debug.Log("Minimum: " + powerUpProbability.MinimumRange);
-                Debug.Log("Maximum: " + powerUpProbability.MaximumRange);
                 var spawnPowerUpEvent = new SpawnPowerUpEvent(powerUpProbability.PowerUpId.Value, transform.position);
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(spawnPowerUpEvent);
                 return;
