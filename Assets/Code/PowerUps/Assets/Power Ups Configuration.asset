@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpPrefabs:
   - {fileID: 2854055484197486681, guid: 5745ece5ee3828348937e2f3f8feb261, type: 3}
+  - {fileID: 1093191134949633321, guid: 2762079a85e3bc642a5423ed473077b0, type: 3}
