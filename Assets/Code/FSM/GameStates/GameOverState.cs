@@ -43,7 +43,9 @@ public class GameOverState : IState, IEventObserver
 
         if (eventData.EventId == EventIds.NoContinue)
         {
-            Countdown();
+            var noContinueEvent = (NoContinueEvent) eventData;
+            if (noContinueEvent.WaitForInput == false)
+                Countdown();
         }
     }
 

@@ -1,6 +1,8 @@
 public class NoContinueEvent : EventData
 {
-    public NoContinueEvent() : base(EventIds.NoContinue)
+    public bool WaitForInput; 
+    public NoContinueEvent(bool wait) : base(EventIds.NoContinue)
     {
+        WaitForInput = wait;
     }
 }

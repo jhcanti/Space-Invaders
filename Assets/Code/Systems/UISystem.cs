@@ -150,7 +150,15 @@ public class UISystem : MonoBehaviour, IEventObserver
         continueView.Hide();
         var showInput = scoreView.CurrentScore > _scoreSystem.GetMinimumScoreTopTen();
         gameOverView.Show(_scoreSystem.GetHighScore(), scoreView.CurrentScore, showInput);
-        _eventQueue.EnqueueEvent(new NoContinueEvent());
+        _eventQueue.EnqueueEvent(new NoContinueEvent(showInput));
+    }
+
+    public void OnNameEnter(string name)
+    {
+        gameOverView.Hide();
+        Debug.Log(name);
+        // grabar score en el ranking
+        // evento para que el GameOverState cambie a inMenu
     }
     
     public void OnVictory()

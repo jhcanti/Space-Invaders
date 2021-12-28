@@ -39,9 +39,9 @@ public class GameOverView : MonoBehaviour
         namePlayer.Select();
     }
 
-    private void SaveData(string arg0)
+    private void SaveData(string name)
     {
         namePlayer.text = String.Empty;
-        // llamar al ScoreSystem para grabar el score en caso de estar entre los mejores scores
+        _uiSystem.OnNameEnter(name);
     }
 }
