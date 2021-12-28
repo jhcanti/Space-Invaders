@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public class HealthPowerUp : PowerUp
 {
+    [SerializeField] private int health;
+    
     protected override void DoInit()
     {
         Rb.velocity = -MyTransform.right * Speed;
@@ -8,5 +12,15 @@ public class HealthPowerUp : PowerUp
     protected override void DoMove()
     {
         
+    }
+    
+    protected override void DoOnTriggerEnter(PlayerMediator player)
+    {
+        player.AddHealth(health);    
+    }
+
+    protected override void DoDestroy()
+    {
+        Destroy(gameObject);
     }
 }
