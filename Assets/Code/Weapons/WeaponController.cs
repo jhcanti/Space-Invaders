@@ -24,10 +24,10 @@ public class WeaponController : MonoBehaviour
         _team = team;
     }
     
-    // hay que hacer un metodo para que el Player pueda cambiar de arma
-    public void ChangeProjectile()
+    
+    public void ChangeProjectile(ProjectileId id)
     {
-        
+        _activeProjectile = id;
     }
     
     

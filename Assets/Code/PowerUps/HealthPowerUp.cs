@@ -16,7 +16,8 @@ public class HealthPowerUp : PowerUp
     
     protected override void DoOnTriggerEnter(PlayerMediator player)
     {
-        player.AddHealth(health);    
+        player.AddHealth(health);
+        DoDestroy();
     }
 
     protected override void DoDestroy()

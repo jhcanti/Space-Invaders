@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class PowerUp : MonoBehaviour
@@ -35,9 +34,11 @@ public abstract class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("He chocado con el Player");
+        DoOnTriggerEnter(other.GetComponent<PlayerMediator>());
     }
 
+    protected abstract void DoOnTriggerEnter(PlayerMediator player);
+    
     protected abstract void DoMove();
     
     private void CheckLimits()
@@ -51,6 +52,8 @@ public abstract class PowerUp : MonoBehaviour
 
     private void DestroyPowerUp()
     {
-        Destroy(gameObject);
+        DoDestroy();
     }
+
+    protected abstract void DoDestroy();
 }

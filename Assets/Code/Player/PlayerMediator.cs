@@ -12,6 +12,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth;
 
     private Collider2D _collider;
+    private SpriteRenderer _shieldRenderer;
     private IInput _input;
     private Vector2 _direction;
 
@@ -19,6 +20,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
+        _shieldRenderer = transform.Find("Shield").GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -65,5 +67,20 @@ public class PlayerMediator : MonoBehaviour, IDamageable
             ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new PlayerDestroyedEvent());
             Destroy(gameObject);
         }
+    }
+
+    public void AddHealth(int amount)
+    {
+        healthController.Heal(amount);
+    }
+
+    public void ActivateShield()
+    {
+        _shieldRenderer.enabled = true;
+    }
+
+    public void SetProjectile(ProjectileId id)
+    {
+        weaponController.ChangeProjectile(id);
     }
 }
