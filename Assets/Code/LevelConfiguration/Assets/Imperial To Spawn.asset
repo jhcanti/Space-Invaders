@@ -18,7 +18,7 @@ MonoBehaviour:
   health: 40
   speed: 5
   fireRate: 1
-  pointsToAdd: 10
+  pointsToAdd: 0
   _powerUpProbabilities:
   - PowerUpId: {fileID: 11400000, guid: f567cc58270b58147bcd65a78a6c5fb1, type: 2}
     MinimumRange: 0
