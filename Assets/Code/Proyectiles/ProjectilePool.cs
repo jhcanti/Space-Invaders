@@ -29,7 +29,6 @@ public class ProjectilePool : MonoBehaviour
             var projectilePool = new Queue<Projectile>();
             AddProjectile(projectileType.Key, projectilePool, poolSize);
             _poolDictionary.Add(projectileType.Key, projectilePool);
-            Debug.Log(projectileType.Key + " - " + projectilePool);
         }
     }
 
