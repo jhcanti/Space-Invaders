@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HighScores : MonoBehaviour
@@ -9,7 +8,8 @@ public class HighScores : MonoBehaviour
     [SerializeField] private Button _backButton;
 
     private EventQueue _eventQueue;
-    private UserData data;
+    private IScoreSystem _scoreSystem;
+    private UserData _userData;
 
     private void Awake()
     {
@@ -19,14 +19,18 @@ public class HighScores : MonoBehaviour
     private void Start()
     {
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
+        _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
 
-        //data = DataStore.Instance.GetData<UserData>("data");
+        _userData = _scoreSystem.GetUserData();
 
-        if (data == null) return;
-            
-        for (var i = 0; i < data.BestScores.Length; i++)
+        for (var i = 0; i < _userData.BestScores.Length; i++)
         {
-                
+            if (_userData.BestScores[i] > 0)
+            {
+                var scoreEntry = Instantiate(scoreEntryPrefab, scoresContainer);
+                scoreEntry.GetComponent<ScoreEntryView>().Configure(_userData.PlayerNames[i],
+                    _userData.BestScores[i].ToString());
+            }                
         }
     }
         
