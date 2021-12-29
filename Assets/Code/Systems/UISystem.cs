@@ -110,6 +110,13 @@ public class UISystem : MonoBehaviour, IEventObserver
         scoreView.AddScore(points);
     }
 
+    public void SetHiScore()
+    {
+        var hiScore = _scoreSystem.GetHighScore();
+        scoreView.SetHiScore(hiScore);    
+    }
+    
+    
     public void OnPausePressed()
     {
         pauseView.Show();

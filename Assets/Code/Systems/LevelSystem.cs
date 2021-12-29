@@ -21,6 +21,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         _playerInstaller = ServiceLocator.Instance.GetService<PlayerInstaller>();
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.NextLevel, this);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+        _uiSystem.SetHiScore();
         StartCoroutine(Countdown());
         parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
     }
@@ -28,6 +29,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     public void ResetAndStart()
     {
         _uiSystem.HideAllMenus();
+        _uiSystem.SetHiScore();
         StartCoroutine(Countdown());
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new RestartLevelCompleteEvent());
     }
@@ -35,6 +37,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     public void NextLevel()
     {
         _uiSystem.HideAllMenus();
+        _uiSystem.SetHiScore();
         parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
         StartCoroutine(Countdown());
     }

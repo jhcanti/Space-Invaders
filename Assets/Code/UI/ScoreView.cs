@@ -5,6 +5,7 @@ public class ScoreView : MonoBehaviour
 {
     public int CurrentScore => _currentScore;
 
+    [SerializeField] private TextMeshProUGUI hiScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private int _currentScore;
@@ -35,5 +36,10 @@ public class ScoreView : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+    }
+
+    public void SetHiScore(int score)
+    {
+        hiScoreText.SetText(score.ToString());
     }
 }
