@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PowerUp : MonoBehaviour
+public abstract class PowerUp : MonoBehaviour, IEventObserver
 {
     public string Id => id.Value;
     
@@ -20,6 +20,8 @@ public abstract class PowerUp : MonoBehaviour
 
     private void Start()
     {
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         MyTransform = transform;
         DoInit();
     }
@@ -56,4 +58,20 @@ public abstract class PowerUp : MonoBehaviour
     }
 
     protected abstract void DoDestroy();
+    
+    
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+    }
+    
+    
+    public void Process(EventData eventData)
+    {
+        if (eventData.EventId == EventIds.GameOver || eventData.EventId == EventIds.Victory)
+        {
+            DestroyPowerUp();
+        }
+    }
 }
