@@ -6,7 +6,7 @@
     UserData GetUserData();
     int GetMinimumScoreTopTen();
     int GetHighScore();
-    void SaveUserData(string[] playerNames, int[] bestScores);
+    void UpdateBestScores(string playerName, int newScore);
     int GlobalScore { get; }
     int LevelScore { get; }
 }

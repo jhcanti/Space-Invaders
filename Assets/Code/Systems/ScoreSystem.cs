@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class ScoreSystem : IEventObserver, IScoreSystem
+﻿public class ScoreSystem : IEventObserver, IScoreSystem
 {
     public int GlobalScore => _globalScore;
     public int LevelScore => _levelScore;
@@ -45,7 +43,6 @@ public class ScoreSystem : IEventObserver, IScoreSystem
     {
         if (eventData.EventId == EventIds.Victory)
         {
-            //UpdateBestScores(_currentScore);
             _globalScore += _levelScore;
             return;
         }
@@ -63,7 +60,7 @@ public class ScoreSystem : IEventObserver, IScoreSystem
         _uISystem.AddScore(points);
     }
 
-    private void UpdateBestScores(string playerName, int newScore)
+    public void UpdateBestScores(string playerName, int newScore)
     {
         var bestScores = GetUserData().BestScores;
         var playerNames = GetUserData().PlayerNames;
@@ -114,7 +111,7 @@ public class ScoreSystem : IEventObserver, IScoreSystem
         return userData.BestScores[0];
     }
     
-    public void SaveUserData(string[] playerNames, int[] bestScores)
+    private void SaveUserData(string[] playerNames, int[] bestScores)
     {
         var userData = new UserData { PlayerNames = playerNames, BestScores = bestScores };
         _dataStore.SetData(userData, Userdata);

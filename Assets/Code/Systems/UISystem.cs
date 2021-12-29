@@ -156,9 +156,8 @@ public class UISystem : MonoBehaviour, IEventObserver
     public void OnNameEnter(string name)
     {
         gameOverView.Hide();
-        Debug.Log(name);
-        // grabar score en el ranking
-        // evento para que el GameOverState cambie a inMenu
+        _scoreSystem.UpdateBestScores(name, scoreView.CurrentScore);
+        _eventQueue.EnqueueEvent(new ScoreUpdatedEvent());
     }
     
     public void OnVictory()
