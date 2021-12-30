@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Curve Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Curve
+  fireRate: 3

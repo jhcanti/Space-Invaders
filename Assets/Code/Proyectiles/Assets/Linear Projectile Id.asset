@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Linear Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Linear
+  fireRate: 0.25
