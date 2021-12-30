@@ -8,11 +8,9 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private HealthController healthController;
     [SerializeField] private WeaponController weaponController;
-    [SerializeField] private float fireRate;
     [SerializeField] private int maxHealth;
 
     private Collider2D _collider;
-    private SpriteRenderer _shieldRenderer;
     private IInput _input;
     private Vector2 _direction;
 
@@ -20,7 +18,6 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _shieldRenderer = transform.Find("Shield").GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -28,7 +25,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
         _input = ServiceLocator.Instance.GetService<IInput>();
         healthController.Init(maxHealth);
         Team = Teams.Ally;
-        weaponController.Configure(fireRate, Team);
+        weaponController.Configure(Team);
         IsActive = true;
     }
 
@@ -76,7 +73,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
 
     public void ActivateShield()
     {
-        _shieldRenderer.enabled = true;
+        //falta activar el escudo
     }
 
     public void SetProjectile(ProjectileId id)

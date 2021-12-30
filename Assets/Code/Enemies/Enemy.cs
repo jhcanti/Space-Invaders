@@ -16,7 +16,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     protected WeaponController WeaponController;
     protected int Health;
     protected float Speed;
-    protected float FireRate;
     protected int PointsToAdd;
     protected Transform MyTransform;
     private Camera _camera;
@@ -34,16 +33,15 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         _camera = Camera.main;
     }
 
-    public void Configure(int health, float speed, float fireRate, int pointsToAdd, PowerUpProbability[] powerUpProbabilities)
+    public void Configure(int health, float speed, int pointsToAdd, PowerUpProbability[] powerUpProbabilities)
     {
         MyTransform = transform;
         Health = health;
         Speed = speed;
-        FireRate = fireRate;
         PointsToAdd = pointsToAdd;
         _powerUpProbabilities = powerUpProbabilities;
         HealthController.Init(Health);
-        WeaponController.Configure(FireRate, Team);
+        WeaponController.Configure(Team);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
         DoInit();
     }

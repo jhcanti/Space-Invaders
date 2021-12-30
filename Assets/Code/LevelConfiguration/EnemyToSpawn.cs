@@ -8,7 +8,6 @@ public class EnemyToSpawn : ScriptableObject
     [SerializeField] private Quaternion spawnRotation;
     [SerializeField] private int health;
     [SerializeField] private float speed;
-    [SerializeField] private float fireRate;
     [SerializeField] private int pointsToAdd;
     [SerializeField] private PowerUpProbability[] _powerUpProbabilities;
 
@@ -17,7 +16,6 @@ public class EnemyToSpawn : ScriptableObject
     public Quaternion SpawnRotation => spawnRotation;
     public int Health => health;
     public float Speed => speed;
-    public float FireRate => fireRate;
     public int PointsToAdd => pointsToAdd;
     public PowerUpProbability[] PowerUpProbabilities => _powerUpProbabilities;
 
