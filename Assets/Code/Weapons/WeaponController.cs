@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviour, IEventObserver
 {
     [SerializeField] private ProjectileId defaultProjectile;
     
@@ -10,6 +11,7 @@ public class WeaponController : MonoBehaviour
     private float _timeBetweenShoots;
     private Teams _team;
     private bool _hasWeapon;
+    private bool _canShoot;
 
     private void Awake()
     {
@@ -23,7 +25,8 @@ public class WeaponController : MonoBehaviour
             _activeProjectile = defaultProjectile;
             _fireRate = _activeProjectile.FireRate;
         }
-        
+
+        _canShoot = true;
         var shootPoint = transform.Find("ProjectileSpawnPoint");
         if (shootPoint != null)
             _projectileSpawnPoint = shootPoint;
@@ -32,6 +35,7 @@ public class WeaponController : MonoBehaviour
     public void Configure(Teams team)
     {
         _team = team;
+        ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.CanShoot, this);
     }
     
     
@@ -45,10 +49,20 @@ public class WeaponController : MonoBehaviour
     public void TryShoot()
     {
         if (_hasWeapon == false) return;
-        
-        if (Time.time > _timeBetweenShoots)
+
+        if (_fireRate == 0)
         {
-            Shoot();
+            if (_canShoot)
+            {
+                Shoot();    
+            }            
+        }
+        else
+        {
+            if (Time.time > _timeBetweenShoots)
+            {
+                Shoot();
+            }    
         }
     }
 
@@ -58,5 +72,19 @@ public class WeaponController : MonoBehaviour
         projectile.gameObject.SetActive(true);
         projectile.Init(_projectileSpawnPoint, _team);
         _timeBetweenShoots = Time.time + _fireRate;
+        _canShoot = false;
+    }
+
+    public void Process(EventData eventData)
+    {
+        if (eventData.EventId == EventIds.CanShoot)
+        {
+            _canShoot = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.CanShoot, this);
     }
 }

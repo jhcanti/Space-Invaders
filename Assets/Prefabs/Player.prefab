@@ -181,7 +181,6 @@ MonoBehaviour:
   playerMovement: {fileID: 5823531968011763393}
   healthController: {fileID: 5823531968011763407}
   weaponController: {fileID: 5823531968011763397}
-  fireRate: 0.1
   maxHealth: 100
 --- !u!114 &5823531968011763393
 MonoBehaviour:

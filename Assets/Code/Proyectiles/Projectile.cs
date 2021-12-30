@@ -14,6 +14,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
     protected Rigidbody2D Rb;
     protected Collider2D Collider2D;
     protected Transform MyTransform;
+    protected Transform ShootPoint;
     protected bool Active;
     
     private Camera _camera;
@@ -28,6 +29,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
 
     public void Init(Transform spawnPoint, Teams team)
     {
+        ShootPoint = spawnPoint;
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
         MyTransform = transform;
@@ -68,7 +70,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
             DeactivateProjectile();
     }
 
-    private void DeactivateProjectile()
+    protected void DeactivateProjectile()
     {
         DoDeactivate();
         Active = false;

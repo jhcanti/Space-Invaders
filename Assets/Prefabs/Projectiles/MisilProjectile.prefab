@@ -154,7 +154,7 @@ MonoBehaviour:
   Speed: 10
   damage: 100
   rotateSpeed: 150
-  radius: 10
+  radius: 15
   distance: 0
   layerMask:
     serializedVersion: 2
