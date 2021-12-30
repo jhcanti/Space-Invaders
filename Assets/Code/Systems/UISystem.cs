@@ -115,9 +115,13 @@ public class UISystem : MonoBehaviour, IEventObserver
         var hiScore = _scoreSystem.GetHighScore();
         scoreView.SetHiScore(hiScore);    
     }
-    
-    
-    public void OnPausePressed()
+
+    public void SetHealth(int maxHealth, int currentHealth)
+    {
+        scoreView.SetHealth(maxHealth, currentHealth);
+    }
+
+    private void OnPausePressed()
     {
         pauseView.Show();
         _isGamePaused = true;

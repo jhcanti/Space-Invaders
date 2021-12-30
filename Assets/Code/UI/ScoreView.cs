@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreView : MonoBehaviour
 {
@@ -7,9 +8,12 @@ public class ScoreView : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI hiScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
-
+    [SerializeField] private BarView healthBar;
+    [SerializeField] private Transform shieldContainer;
+    [SerializeField] private GameObject shieldPrefab;
+    [SerializeField] private Image weaponIcon;
+    
     private int _currentScore;
-
 
     private void UpdateScore(int newScore)
     {
@@ -41,5 +45,11 @@ public class ScoreView : MonoBehaviour
     public void SetHiScore(int score)
     {
         hiScoreText.SetText(score.ToString());
+    }
+
+    public void SetHealth(int maxHealth, int currentHealth)
+    {
+        var percentage = currentHealth / (float) maxHealth;
+        healthBar.SetBarAmount(percentage);
     }
 }

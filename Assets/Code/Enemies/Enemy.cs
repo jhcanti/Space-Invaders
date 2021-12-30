@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         Speed = speed;
         PointsToAdd = pointsToAdd;
         _powerUpProbabilities = powerUpProbabilities;
-        HealthController.Init(Health);
+        HealthController.Init(Health, Teams.Enemy);
         WeaponController.Configure(Team);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
         DoInit();

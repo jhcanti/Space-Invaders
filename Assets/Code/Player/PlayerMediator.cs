@@ -23,7 +23,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     private void Start()
     {
         _input = ServiceLocator.Instance.GetService<IInput>();
-        healthController.Init(maxHealth);
+        healthController.Init(maxHealth, Teams.Ally);
         Team = Teams.Ally;
         weaponController.Configure(Team);
         IsActive = true;
