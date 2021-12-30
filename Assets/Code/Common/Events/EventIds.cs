@@ -15,4 +15,5 @@
     RestartLevelComplete,
     SpawnPowerUp,
     ScoreUpdated,
+    CanShoot
 }
