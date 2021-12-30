@@ -148,9 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abe05d44d9750449bdfc7ee5444022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilesConfiguration: {fileID: 11400000, guid: 9e4121bf18760af4db12110f69bdc314, type: 2}
-  defaultProyectile: {fileID: 0}
-  projectileSpawnpoint: {fileID: 0}
+  defaultProjectile: {fileID: 0}
 --- !u!114 &9086998636716809819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,4 +162,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: f59157e3e68cc3f44a40e9fc8203d4ac, type: 2}
+  VerticalMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   damageForImpact: 40
+  radiusDetection: 1.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  durationBlink: 0.05
+  loops: 16

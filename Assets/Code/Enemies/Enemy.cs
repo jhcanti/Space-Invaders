@@ -93,7 +93,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         }
     }
 
-    private void DestroyEnemy(int points)
+    protected void DestroyEnemy(int points)
     {
         Destroy(gameObject);
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
