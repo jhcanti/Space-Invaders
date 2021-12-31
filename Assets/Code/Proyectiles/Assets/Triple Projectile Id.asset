@@ -15,4 +15,4 @@ MonoBehaviour:
   projectileId: Triple
   icon: {fileID: 21300000, guid: 7324f2ab40cccba40bfd615ed4696393, type: 3}
   fireRate: 0.2
-  costPerSecond: 33
+  durabilityInSeconds: 3
