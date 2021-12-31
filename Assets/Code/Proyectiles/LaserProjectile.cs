@@ -17,7 +17,7 @@ public class LaserProjectile : Projectile
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.enabled = true;
         _isActive = true;
-        StartCoroutine(Countdown(100 / id.CostPerSecond));
+        StartCoroutine(Countdown(100 / id.DurabilityInSeconds));
     }
 
     protected override void DoMove()
