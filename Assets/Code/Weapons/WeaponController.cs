@@ -55,13 +55,11 @@ public class WeaponController : MonoBehaviour
     
     public void ChangeProjectile(ProjectileId id)
     {
-        Debug.Log("Change projectile");
         _activeProjectile = id;
         _fireRate = _activeProjectile.FireRate;
         _costPerSecond = _activeProjectile.CostPerSecond;
         if (_costPerSecond > 0)
         {
-            Debug.Log("Durability 100%");
             _durability = 100;
             _oneSecond = 1f;
         }
