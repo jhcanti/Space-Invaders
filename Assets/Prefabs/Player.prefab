@@ -219,4 +219,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abe05d44d9750449bdfc7ee5444022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultProjectile: {fileID: 11400000, guid: 9f588f8ac59172f4b9bd697d99225743, type: 2}
+  defaultProjectile: {fileID: 11400000, guid: ae11215aae666fa46b8167f6c5446502, type: 2}
