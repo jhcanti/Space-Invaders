@@ -6,7 +6,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
     public Teams Team { get; private set; }
     public string Id => id.Value;
 
-    [SerializeField] private ProjectileId id;
+    [SerializeField] protected ProjectileId id;
     [SerializeField] protected AnimationCurve VerticalMovement;
     [SerializeField] protected float Speed;
     [SerializeField] private int damage;
