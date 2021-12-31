@@ -9,6 +9,7 @@ public class ScoreView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hiScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private BarView healthBar;
+    [SerializeField] private BarView weaponBar;
     [SerializeField] private Transform shieldContainer;
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private Image weaponIcon;
@@ -51,5 +52,16 @@ public class ScoreView : MonoBehaviour
     {
         var percentage = currentHealth / (float) maxHealth;
         healthBar.SetBarAmount(percentage);
+    }
+
+    public void SetWeaponIcon(Sprite sprite)
+    {
+        weaponIcon.sprite = sprite;
+    }
+
+    public void SetWeaponDurability(float currentDurability)
+    {
+        var percentage = currentDurability / 100f;
+        weaponBar.SetBarAmount(percentage);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -7,6 +6,7 @@ public class WeaponController : MonoBehaviour
     
     private Transform _projectileSpawnPoint;
     private ProjectileId _activeProjectile;
+    private UISystem _uiSystem;
     private float _fireRate;
     private float _costPerSecond;
     private float _timeBetweenShoots;
@@ -20,18 +20,6 @@ public class WeaponController : MonoBehaviour
     {
         _durability = 100;
         _oneSecond = 1f;
-        if (defaultProjectile == null)
-        {
-            _hasWeapon = false;
-        }
-        else
-        {
-            _hasWeapon = true;
-            _activeProjectile = defaultProjectile;
-            _fireRate = _activeProjectile.FireRate;
-            _costPerSecond = _activeProjectile.CostPerSecond;
-        }
-
         _hasShoot = false;
         var shootPoint = transform.Find("ProjectileSpawnPoint");
         if (shootPoint != null)
@@ -41,11 +29,23 @@ public class WeaponController : MonoBehaviour
     public void Configure(Teams team)
     {
         _team = team;
+        _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
+        if (defaultProjectile == null)
+        {
+            _hasWeapon = false;
+        }
+        else
+        {
+            _hasWeapon = true;
+            ChangeProjectile(defaultProjectile);
+        }
     }
 
 
     private void Update()
     {
+        if (_team == Teams.Enemy) return;
+        
         if (_costPerSecond > 0)
         {
             CheckDurability();
@@ -58,11 +58,13 @@ public class WeaponController : MonoBehaviour
         _activeProjectile = id;
         _fireRate = _activeProjectile.FireRate;
         _costPerSecond = _activeProjectile.CostPerSecond;
-        if (_costPerSecond > 0)
-        {
-            _durability = 100;
-            _oneSecond = 1f;
-        }
+        _durability = 100;
+        _oneSecond = 1f;
+        
+        if (_team == Teams.Enemy) return;
+        
+        _uiSystem.SetWeaponIcon(id.Icon);
+        _uiSystem.SetWeaponDurability(_durability);
     }
 
     
@@ -84,15 +86,16 @@ public class WeaponController : MonoBehaviour
                 Shoot();
             }
             
+            if (_team == Teams.Enemy) return;
+        
             if (_costPerSecond > 0)
             {
                 _oneSecond -= Time.deltaTime;
-                Debug.Log("Time: " + _oneSecond);
                 if (_oneSecond <= 0)
                 {
                     _durability -= _costPerSecond;
-                    Debug.Log("Durability: " + _durability);
                     _oneSecond = 1f;
+                    _uiSystem.SetWeaponDurability(_durability);
                 }    
             }
         }
@@ -121,7 +124,6 @@ public class WeaponController : MonoBehaviour
     {
         if (_durability <= 0)
         {
-            Debug.Log("Cambiando a proyectil por defecto");
             ChangeProjectile(defaultProjectile);
         }
 
@@ -132,7 +134,9 @@ public class WeaponController : MonoBehaviour
             {
                 _durability -= _costPerSecond;
                 _oneSecond = 1f;
-            }    
+                _uiSystem.SetWeaponDurability(_durability);
+            }
+            
         }
     }
 }

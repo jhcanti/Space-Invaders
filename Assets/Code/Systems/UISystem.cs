@@ -121,6 +121,16 @@ public class UISystem : MonoBehaviour, IEventObserver
         scoreView.SetHealth(maxHealth, currentHealth);
     }
 
+    public void SetWeaponIcon(Sprite sprite)
+    {
+        scoreView.SetWeaponIcon(sprite);
+    }
+
+    public void SetWeaponDurability(float currentDurability)
+    {
+        scoreView.SetWeaponDurability(currentDurability);
+    }
+    
     private void OnPausePressed()
     {
         pauseView.Show();
