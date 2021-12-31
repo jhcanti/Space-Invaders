@@ -8,9 +8,9 @@ public class WeaponController : MonoBehaviour
     private ProjectileId _activeProjectile;
     private UISystem _uiSystem;
     private float _fireRate;
-    private float _costPerSecond;
+    private float _durabilityInSeconds;
     private float _timeBetweenShoots;
-    private float _oneSecond;
+    private float _timeRemaining;
     private Teams _team;
     private bool _hasWeapon;
     private float _durability;
@@ -19,7 +19,6 @@ public class WeaponController : MonoBehaviour
     private void Awake()
     {
         _durability = 100;
-        _oneSecond = 1f;
         _hasShoot = false;
         var shootPoint = transform.Find("ProjectileSpawnPoint");
         if (shootPoint != null)
@@ -46,7 +45,7 @@ public class WeaponController : MonoBehaviour
     {
         if (_team == Teams.Enemy) return;
         
-        if (_costPerSecond > 0)
+        if (_durabilityInSeconds > 0)
         {
             CheckDurability();
         }
@@ -57,9 +56,9 @@ public class WeaponController : MonoBehaviour
     {
         _activeProjectile = id;
         _fireRate = _activeProjectile.FireRate;
-        _costPerSecond = _activeProjectile.CostPerSecond;
+        _durabilityInSeconds = _activeProjectile.DurabilityInSeconds;
+        _timeRemaining = _durabilityInSeconds;
         _durability = 100;
-        _oneSecond = 1f;
         
         if (_team == Teams.Enemy) return;
         
@@ -88,15 +87,11 @@ public class WeaponController : MonoBehaviour
             
             if (_team == Teams.Enemy) return;
         
-            if (_costPerSecond > 0)
+            if (_durabilityInSeconds > 0)
             {
-                _oneSecond -= Time.deltaTime;
-                if (_oneSecond <= 0)
-                {
-                    _durability -= _costPerSecond;
-                    _oneSecond = 1f;
-                    _uiSystem.SetWeaponDurability(_durability);
-                }    
+                _timeRemaining -= Time.deltaTime;
+                _durability = (_timeRemaining / _durabilityInSeconds) * 100f;
+                _uiSystem.SetWeaponDurability(_durability);
             }
         }
     }
@@ -129,14 +124,9 @@ public class WeaponController : MonoBehaviour
 
         if (_fireRate == 0 && _hasShoot)
         {
-            _oneSecond -= Time.deltaTime;
-            if (_oneSecond <= 0)
-            {
-                _durability -= _costPerSecond;
-                _oneSecond = 1f;
-                _uiSystem.SetWeaponDurability(_durability);
-            }
-            
+            _timeRemaining -= Time.deltaTime;
+            _durability = (_timeRemaining / _durabilityInSeconds) * 100f;
+            _uiSystem.SetWeaponDurability(_durability);
         }
     }
 }
