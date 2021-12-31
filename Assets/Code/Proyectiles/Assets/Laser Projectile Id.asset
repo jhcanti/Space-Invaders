@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Laser Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Laser
+  icon: {fileID: 21300000, guid: 3355ef93dc16e0e48adb5101f78d8c5c, type: 3}
   fireRate: 0
+  costPerSecond: 50

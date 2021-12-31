@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c543d33a2d61044c89d009c8faffeae, type: 3}
   m_Name: Triple Projectile Id
   m_EditorClassIdentifier: 
-  projectileId: 
-  fireRate: 0
-  costPerSecond: 0
+  projectileId: Triple
+  icon: {fileID: 21300000, guid: 7324f2ab40cccba40bfd615ed4696393, type: 3}
+  fireRate: 0.2
+  costPerSecond: 33

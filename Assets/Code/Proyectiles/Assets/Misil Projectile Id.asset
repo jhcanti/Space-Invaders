@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Misil Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Misil
+  icon: {fileID: 21300000, guid: 8c861474e7eaeec4b868bf9f5bd307d6, type: 3}
   fireRate: 0.3
+  costPerSecond: 0

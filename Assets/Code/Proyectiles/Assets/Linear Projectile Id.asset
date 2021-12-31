@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Linear Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Linear
+  icon: {fileID: 21300000, guid: f331b629b5af3c1429824c2a0a96a636, type: 3}
   fireRate: 0.25
+  costPerSecond: 0

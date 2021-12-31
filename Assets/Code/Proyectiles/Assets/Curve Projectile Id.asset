@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Curve Projectile Id
   m_EditorClassIdentifier: 
   projectileId: Curve
+  icon: {fileID: 21300000, guid: 0bf68fa4274e98543872903e60cac758, type: 3}
   fireRate: 3
+  costPerSecond: 0
