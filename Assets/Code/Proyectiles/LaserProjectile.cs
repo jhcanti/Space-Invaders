@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LaserProjectile : Projectile
@@ -16,6 +17,7 @@ public class LaserProjectile : Projectile
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.enabled = true;
         _isActive = true;
+        StartCoroutine(Countdown(100 / id.CostPerSecond));
     }
 
     protected override void DoMove()
@@ -45,5 +47,11 @@ public class LaserProjectile : Projectile
     {
         _isActive = false;
         _lineRenderer.enabled = false;        
+    }
+
+    private IEnumerator Countdown(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DoDeactivate();
     }
 }
