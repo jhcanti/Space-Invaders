@@ -17,9 +17,8 @@ MonoBehaviour:
   spawnRotation: {x: 0, y: 0, z: 180, w: 0}
   health: 40
   speed: 6
-  fireRate: 1
   pointsToAdd: 30
   _powerUpProbabilities:
-  - PowerUpId: {fileID: 11400000, guid: fe3f6758c686029419c3fb43a680e457, type: 2}
+  - PowerUpId: {fileID: 11400000, guid: ce1a81e392a0bc34188300af42cba33b, type: 2}
     MinimumRange: 0
     MaximumRange: 100
