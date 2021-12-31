@@ -82,7 +82,19 @@ public class WeaponController : MonoBehaviour
             if (Time.time > _timeBetweenShoots)
             {
                 Shoot();
-            }    
+            }
+            
+            if (_costPerSecond > 0)
+            {
+                _oneSecond -= Time.deltaTime;
+                Debug.Log("Time: " + _oneSecond);
+                if (_oneSecond <= 0)
+                {
+                    _durability -= _costPerSecond;
+                    Debug.Log("Durability: " + _durability);
+                    _oneSecond = 1f;
+                }    
+            }
         }
     }
 
@@ -100,13 +112,8 @@ public class WeaponController : MonoBehaviour
         else
         {
             _timeBetweenShoots = Time.time + _fireRate;
-            _oneSecond -= Time.deltaTime;
-            if (_oneSecond <= 0)
-            {
-                _durability -= _costPerSecond;
-                _oneSecond = 1f;
-            }
         }
+        
     }
 
     
@@ -114,6 +121,7 @@ public class WeaponController : MonoBehaviour
     {
         if (_durability <= 0)
         {
+            Debug.Log("Cambiando a proyectil por defecto");
             ChangeProjectile(defaultProjectile);
         }
 
