@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 505430218670107150}
   - component: {fileID: 8845727194731785350}
   - component: {fileID: 4853508306138433054}
-  - component: {fileID: 4126420851989415922}
+  - component: {fileID: 4731577616303026346}
   - component: {fileID: 1093191134949633321}
   m_Layer: 9
   m_Name: ShieldPowerUp
@@ -106,8 +106,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4126420851989415922
-CircleCollider2D:
+--- !u!61 &4731577616303026346
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,8 +120,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7529412, y: 0.7529412}
+    newSize: {x: 4, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.7529412, y: 0.7529412}
+  m_EdgeRadius: 0
 --- !u!114 &1093191134949633321
 MonoBehaviour:
   m_ObjectHideFlags: 0

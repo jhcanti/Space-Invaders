@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7190294937082904322}
   - component: {fileID: 2164260242161531274}
   - component: {fileID: 2851210859097871122}
-  - component: {fileID: 6740011619412202238}
+  - component: {fileID: 6020746523563396203}
   - component: {fileID: 4894099625398732036}
   m_Layer: 9
   m_Name: SetLaserPowerUp
@@ -106,8 +106,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6740011619412202238
-CircleCollider2D:
+--- !u!61 &6020746523563396203
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,8 +120,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7529412, y: 0.7529412}
+    newSize: {x: 4, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.7529412, y: 0.7529412}
+  m_EdgeRadius: 0
 --- !u!114 &4894099625398732036
 MonoBehaviour:
   m_ObjectHideFlags: 0
