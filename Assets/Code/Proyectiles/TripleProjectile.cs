@@ -1,5 +1,5 @@
-﻿public class LinearProjectile : Projectile
-{    
+public class TripleProjectile : Projectile
+{
     protected override void DoInit()
     {
         Rb.velocity = MyTransform.right * Speed;
@@ -12,7 +12,6 @@
 
     protected override void DoDeactivate()
     {
-
+        
     }
-    
 }
