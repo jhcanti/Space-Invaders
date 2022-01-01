@@ -16,7 +16,7 @@ MonoBehaviour:
   spawnPosition: {x: 17.75, y: 3.7, z: 0}
   spawnRotation: {x: 0, y: 0, z: 180, w: 0}
   health: 20
-  speed: 4
+  speed: 2
   pointsToAdd: 10
   _powerUpProbabilities:
   - PowerUpId: {fileID: 11400000, guid: 53eefb247c2e95e4ebc4428a40a494c5, type: 2}
