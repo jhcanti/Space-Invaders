@@ -60,7 +60,6 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
             damageable.ReceiveDamage(damage);
             DeactivateProjectile();
         }
-            
     }
     
     private void CheckLimits()
