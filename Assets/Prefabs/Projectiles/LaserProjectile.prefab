@@ -251,7 +251,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Speed: 0
-  damage: 0
+  Damage: 5
   distanceLaser: 20
   layerMask:
     serializedVersion: 2
