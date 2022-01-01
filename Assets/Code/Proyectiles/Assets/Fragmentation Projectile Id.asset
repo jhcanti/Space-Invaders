@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c543d33a2d61044c89d009c8faffeae, type: 3}
   m_Name: Fragmentation Projectile Id
   m_EditorClassIdentifier: 
-  projectileId: 
-  icon: {fileID: 0}
-  fireRate: 0
+  projectileId: Fragmentation
+  icon: {fileID: 21300000, guid: 5a18e39498fc9074c93269b9cf0d2aa2, type: 3}
+  fireRate: 0.5
   durabilityInSeconds: 0
