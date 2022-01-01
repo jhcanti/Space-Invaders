@@ -184,7 +184,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -224,7 +224,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 6
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -256,5 +256,3 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  timeToRecharge: 2
-  laserDuration: 3
