@@ -15,9 +15,9 @@ public class LaserProjectile : Projectile
     {
         _laserOrigin = ShootPoint;
         _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.enabled = true;
+        //_lineRenderer.enabled = true;
         _isActive = true;
-        StartCoroutine(Countdown(100 / id.DurabilityInSeconds));
+        StartCoroutine(Countdown(id.DurabilityInSeconds));
     }
 
     protected override void DoMove()
@@ -46,12 +46,12 @@ public class LaserProjectile : Projectile
     protected override void DoDeactivate()
     {
         _isActive = false;
-        _lineRenderer.enabled = false;        
+        //_lineRenderer.enabled = false;        
     }
 
     private IEnumerator Countdown(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        DoDeactivate();
+        DeactivateProjectile();
     }
 }

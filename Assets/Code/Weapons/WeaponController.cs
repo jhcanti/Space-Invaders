@@ -119,6 +119,7 @@ public class WeaponController : MonoBehaviour
     {
         if (_durability <= 0)
         {
+            _hasShoot = false;
             ChangeProjectile(defaultProjectile);
         }
 
