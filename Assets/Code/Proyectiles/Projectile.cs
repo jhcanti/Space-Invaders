@@ -7,7 +7,6 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
     public string Id => id.Value;
 
     [SerializeField] protected ProjectileId id;
-    [SerializeField] protected AnimationCurve VerticalMovement;
     [SerializeField] protected float Speed;
     [SerializeField] protected int Damage;
 
