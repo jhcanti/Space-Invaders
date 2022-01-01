@@ -15,7 +15,6 @@ public class LaserProjectile : Projectile
     {
         _laserOrigin = ShootPoint;
         _lineRenderer = GetComponent<LineRenderer>();
-        //_lineRenderer.enabled = true;
         _isActive = true;
         StartCoroutine(Countdown(id.DurabilityInSeconds));
     }
@@ -33,6 +32,13 @@ public class LaserProjectile : Projectile
         else
         {
             DrawRay(_laserOrigin.position, hit.distance);
+            var damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable == null) return;
+
+            if (damageable.Team != Team)
+            {
+                damageable.ReceiveDamage(Damage);
+            }
         }
     }
 
@@ -46,7 +52,6 @@ public class LaserProjectile : Projectile
     protected override void DoDeactivate()
     {
         _isActive = false;
-        //_lineRenderer.enabled = false;        
     }
 
     private IEnumerator Countdown(float seconds)

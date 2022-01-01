@@ -9,7 +9,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
     [SerializeField] protected ProjectileId id;
     [SerializeField] protected AnimationCurve VerticalMovement;
     [SerializeField] protected float Speed;
-    [SerializeField] private int damage;
+    [SerializeField] protected int Damage;
 
     protected Rigidbody2D Rb;
     protected Collider2D Collider2D;
@@ -57,7 +57,7 @@ public abstract class Projectile : MonoBehaviour, IEventObserver
 
         if (damageable.Team != Team)
         {
-            damageable.ReceiveDamage(damage);
+            damageable.ReceiveDamage(Damage);
             DeactivateProjectile();
         }
     }
