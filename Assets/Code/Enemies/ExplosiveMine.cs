@@ -10,6 +10,7 @@ public class ExplosiveMine : Enemy
 
     private SpriteRenderer _myRenderer;
     private bool _isActive;
+    private Sequence _sequence; 
     
     protected override void DoInit()
     {
@@ -28,11 +29,19 @@ public class ExplosiveMine : Enemy
 
         _isActive = true;
         var currentColor = _myRenderer.color;
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(_myRenderer.DOColor(Color.white, durationBlink));
-        sequence.Append(_myRenderer.DOColor(currentColor, durationBlink));
-        sequence.SetLoops(loops);
-        sequence.OnComplete(() => DestroyEnemy(0));
+        _sequence = DOTween.Sequence();
+        _sequence.Append(_myRenderer.DOColor(Color.white, durationBlink));
+        _sequence.Append(_myRenderer.DOColor(currentColor, durationBlink));
+        _sequence.SetLoops(loops);
+        _sequence.OnComplete(() => DestroyEnemy(0));
+    }
+
+    protected override void DoDestroy()
+    {
+        if (_sequence.IsActive())
+        {
+            _sequence.Kill();
+        }
     }
 
     protected override void DoTryShoot()

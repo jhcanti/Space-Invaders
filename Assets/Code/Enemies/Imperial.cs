@@ -10,6 +10,11 @@ public class Imperial : Enemy
         
     }
 
+    protected override void DoDestroy()
+    {
+        
+    }
+
     protected override void DoTryShoot()
     {
         WeaponController.TryShoot();

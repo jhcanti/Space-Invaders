@@ -23,4 +23,9 @@ public class Phantom : Enemy
         Rb.MovePosition(_currentPosition + verticalPosition);
         _currentTime += Time.deltaTime;
     }
+
+    protected override void DoDestroy()
+    {
+        
+    }
 }

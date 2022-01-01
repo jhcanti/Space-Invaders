@@ -95,7 +95,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
 
     protected void DestroyEnemy(int points)
     {
-        Destroy(gameObject);
+        DoDestroy();
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
         
@@ -105,8 +105,13 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
 
             CalculatePowerUpSpawn();
         }
+        
+        Destroy(gameObject);
     }
 
+    protected abstract void DoDestroy();
+    
+    
     private void CalculatePowerUpSpawn()
     {
         var number = Random.Range(0f, 100f);
