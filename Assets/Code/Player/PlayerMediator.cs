@@ -63,7 +63,6 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     {
         var remainingDamage = shieldController.ReceiveDamage(amount);
 
-        Debug.Log("Remaining Damage: " + remainingDamage);
         if (remainingDamage > 0)
         {
             var isDead = healthController.ReceiveDamage(amount);
