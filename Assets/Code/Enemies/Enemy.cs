@@ -80,6 +80,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         var isDead = HealthController.ReceiveDamage(amount);
         if (isDead)
         {
+            EnemyCollider.enabled = false;
             DestroyEnemy(PointsToAdd);
         }
     }
