@@ -121,6 +121,11 @@ public class UISystem : MonoBehaviour, IEventObserver
         scoreView.SetHealth(maxHealth, currentHealth);
     }
 
+    public void SetShield(int maxShield, int currentShield)
+    {
+        scoreView.SetShield(maxShield, currentShield);
+    }
+    
     public void SetWeaponIcon(Sprite sprite)
     {
         scoreView.SetWeaponIcon(sprite);

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,11 @@ public class ScoreView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private BarView healthBar;
     [SerializeField] private BarView weaponBar;
-    [SerializeField] private Transform shieldContainer;
-    [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private Image weaponIcon;
-    
+    [SerializeField] private BarView[] shieldBars;
     private int _currentScore;
+
+
 
     private void UpdateScore(int newScore)
     {
@@ -54,6 +55,26 @@ public class ScoreView : MonoBehaviour
         healthBar.SetBarAmount(percentage);
     }
 
+    public void SetShield(int maxShield, int currentShield)
+    {
+        var shieldPiece = (float) maxShield / shieldBars.Length;
+        for (var i = 0; i < shieldBars.Length; i++)
+        {
+            var maximum = shieldPiece * (i + 1);
+            
+            if (currentShield >= maximum)
+            {
+                shieldBars[i].SetBarAmount(100f);
+            }
+            else
+            {
+                var minimum = shieldPiece * i;
+                var amount = (currentShield - minimum) / shieldPiece;
+                shieldBars[i].SetBarAmount(amount);
+            }
+        }
+    }
+    
     public void SetWeaponIcon(Sprite sprite)
     {
         weaponIcon.sprite = sprite;
@@ -64,4 +85,5 @@ public class ScoreView : MonoBehaviour
         var percentage = currentDurability / 100f;
         weaponBar.SetBarAmount(percentage);
     }
+    
 }

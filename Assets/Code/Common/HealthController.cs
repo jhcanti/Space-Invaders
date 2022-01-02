@@ -11,6 +11,7 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
+        _uiSystem.SetHealth(_maxHealth, _currentHealth);
     }
 
     public void Init(int maxHealth, Teams team)
@@ -28,7 +29,7 @@ public class HealthController : MonoBehaviour
             _uiSystem.SetHealth(_maxHealth, _currentHealth);
     }
 
-    public bool ReciveDamage(int amount)
+    public bool ReceiveDamage(int amount)
     {
         var newHealth = _currentHealth - amount;
         _currentHealth = Mathf.Clamp(newHealth, 0, _maxHealth);

@@ -146,3 +146,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: f567cc58270b58147bcd65a78a6c5fb1, type: 2}
   Speed: 2
+  shieldToAdd: 50

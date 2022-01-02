@@ -1,5 +1,10 @@
+using UnityEngine;
+
 public class ShieldPowerUp : PowerUp
 {
+    [SerializeField] private int shieldToAdd;
+    
+    
     protected override void DoInit()
     {
         Rb.velocity = -MyTransform.right * Speed;
@@ -7,7 +12,7 @@ public class ShieldPowerUp : PowerUp
 
     protected override void DoOnTriggerEnter(PlayerMediator player)
     {
-        player.ActivateShield();
+        player.AddShield(shieldToAdd);
         DoDestroy();
     }
 

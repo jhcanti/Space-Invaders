@@ -77,7 +77,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         var viewportPosition = _camera.WorldToViewportPoint(Rb.position);
         if (viewportPosition.x < 0 || viewportPosition.x > 1) return;
         
-        var isDead = HealthController.ReciveDamage(amount);
+        var isDead = HealthController.ReceiveDamage(amount);
         if (isDead)
         {
             DestroyEnemy(PointsToAdd);

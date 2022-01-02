@@ -7,8 +7,10 @@ public class PlayerMediator : MonoBehaviour, IDamageable
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private HealthController healthController;
+    [SerializeField] private ShieldController shieldController;
     [SerializeField] private WeaponController weaponController;
     [SerializeField] private int maxHealth;
+    [SerializeField] private int maxShield;
 
     private Collider2D _collider;
     private IInput _input;
@@ -24,6 +26,7 @@ public class PlayerMediator : MonoBehaviour, IDamageable
     {
         _input = ServiceLocator.Instance.GetService<IInput>();
         healthController.Init(maxHealth, Teams.Ally);
+        shieldController.Init(maxShield, Teams.Ally);
         Team = Teams.Ally;
         weaponController.Configure(Team);
         IsActive = true;
@@ -58,11 +61,17 @@ public class PlayerMediator : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(int amount)
     {
-        var isDead = healthController.ReciveDamage(amount);
-        if (isDead)
+        var remainingDamage = shieldController.ReceiveDamage(amount);
+
+        Debug.Log("Remaining Damage: " + remainingDamage);
+        if (remainingDamage > 0)
         {
-            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new PlayerDestroyedEvent());
-            Destroy(gameObject);
+            var isDead = healthController.ReceiveDamage(amount);
+            if (isDead)
+            {
+                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new PlayerDestroyedEvent());
+                Destroy(gameObject);
+            }    
         }
     }
 
@@ -71,9 +80,9 @@ public class PlayerMediator : MonoBehaviour, IDamageable
         healthController.Heal(amount);
     }
 
-    public void ActivateShield()
+    public void AddShield(int amount)
     {
-        //falta activar el escudo
+        shieldController.AddShield(amount);
     }
 
     public void SetProjectile(ProjectileId id)
