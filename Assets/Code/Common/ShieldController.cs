@@ -35,7 +35,6 @@ public class ShieldController : MonoBehaviour
 
         if (amount >= _currentShield)
         {
-            Debug.Log("Demasiado daño: " + amount + ":" + _currentShield);
             remainingDamage = amount - _currentShield;
             _currentShield = 0;
         }
