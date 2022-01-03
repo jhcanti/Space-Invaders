@@ -1,4 +1,6 @@
-﻿public class PlayingState : IState, IEventObserver
+﻿using UnityEngine;
+
+public class PlayingState : IState, IEventObserver
 {
     private readonly GameManager _gameManager;
     private EventQueue _eventQueue;
@@ -48,6 +50,10 @@
         if (eventData.EventId == EventIds.EnemyDestroyed)
         {
             _aliveEnemies--;
+            if (_aliveEnemies < 0)
+            {
+                Debug.LogError("No pueden existir enemigos vivos en negativo");
+            }
         }
 
         if (eventData.EventId == EventIds.AllEnemiesSpawned)

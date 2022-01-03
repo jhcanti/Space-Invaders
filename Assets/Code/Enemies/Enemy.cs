@@ -20,6 +20,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     protected Transform MyTransform;
     private Camera _camera;
     private PowerUpProbability[] _powerUpProbabilities;
+    private int _previousInstance;
+    private int _previousFrame;
 
 
     private void Awake()
@@ -96,6 +98,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
 
     protected void DestroyEnemy(int points)
     {
+        var instance = gameObject.GetInstanceID();
+        if (instance == _previousInstance && Time.frameCount == _previousFrame)
+            return;
+
+        _previousInstance = instance;
+        _previousFrame = Time.frameCount;
         DoDestroy();
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
