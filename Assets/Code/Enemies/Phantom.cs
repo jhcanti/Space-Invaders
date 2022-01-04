@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Phantom : Enemy
 {
+    [SerializeField] protected AnimationCurve verticalMovement;
+
     private Vector3 _currentPosition;
     private float _currentTime;
     
@@ -19,7 +21,7 @@ public class Phantom : Enemy
     protected override void DoMove()
     {
         _currentPosition += MyTransform.right * (Speed * Time.deltaTime);
-        var verticalPosition = MyTransform.up * VerticalMovement.Evaluate(_currentTime);
+        var verticalPosition = MyTransform.up * verticalMovement.Evaluate(_currentTime);
         Rb.MovePosition(_currentPosition + verticalPosition);
         _currentTime += Time.deltaTime;
     }
