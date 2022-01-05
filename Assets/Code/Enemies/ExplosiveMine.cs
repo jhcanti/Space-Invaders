@@ -3,20 +3,19 @@ using UnityEngine;
 
 public class ExplosiveMine : Enemy
 {
+    [SerializeField] private SpriteRenderer myRenderer;
     [SerializeField] private float radiusDetection;
     [SerializeField] private float radiusExplosion;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float durationBlink;
     [SerializeField] private int loops;
     [SerializeField] private int damageByExplosion;
-
-    private SpriteRenderer _myRenderer;
+    
     private bool _isActive;
     private Sequence _sequence; 
     
     protected override void DoInit()
     {
-        _myRenderer = GetComponent<SpriteRenderer>();
         _isActive = false;
         Rb.velocity = MyTransform.right * Speed;
     }
@@ -30,10 +29,10 @@ public class ExplosiveMine : Enemy
         if (hit.collider == null) return;
 
         _isActive = true;
-        var currentColor = _myRenderer.color;
+        var currentColor = myRenderer.color;
         _sequence = DOTween.Sequence();
-        _sequence.Append(_myRenderer.DOColor(Color.white, durationBlink));
-        _sequence.Append(_myRenderer.DOColor(currentColor, durationBlink));
+        _sequence.Append(myRenderer.DOColor(Color.red, durationBlink));
+        _sequence.Append(myRenderer.DOColor(currentColor, durationBlink));
         _sequence.SetLoops(loops);
         _sequence.OnComplete(() =>
         {

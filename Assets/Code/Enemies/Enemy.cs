@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     protected SpriteRenderer Renderer;
     protected HealthController HealthController;
     protected WeaponController WeaponController;
+    private ExplosionController _explosionController;
     protected int Health;
     protected float Speed;
     protected int PointsToAdd;
@@ -44,6 +45,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         HealthController.Init(Health, Teams.Enemy);
         WeaponController.Configure(Team);
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
+        _explosionController = ServiceLocator.Instance.GetService<ExplosionController>();
         DoInit();
     }
 
@@ -104,6 +106,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         _previousInstance = instance;
         _previousFrame = Time.frameCount;
         DoDestroy();
+        _explosionController.Create(transform.position);
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
         

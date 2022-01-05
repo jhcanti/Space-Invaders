@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 2a78745f9093b324581d177c440ce70a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 914a8c88d9b724647b0a6ba1fec8d93a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,11 +135,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: 18f1b7406c7a3704294c65d83797b877, type: 2}
-  VerticalMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Speed: 20
   Damage: 20
