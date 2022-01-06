@@ -16,12 +16,12 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 11400000, guid: fa6b8b21c50c4eb45a5a417e7d1051a4, type: 2}
     spawnPositions:
     - {x: 18, y: 0, z: 0}
-    - {x: 21, y: 5.5, z: 0}
-    - {x: 21, y: -5.5, z: 0}
-    - {x: 24, y: 4, z: 0}
-    - {x: 24, y: -4, z: 0}
-    - {x: 27, y: 5.5, z: 0}
-    - {x: 27, y: -5.5, z: 0}
+    - {x: 23, y: 5, z: 0}
+    - {x: 23, y: -5, z: 0}
+    - {x: 28, y: 4, z: 0}
+    - {x: 28, y: -4, z: 0}
+    - {x: 33, y: 5, z: 0}
+    - {x: 33, y: -5, z: 0}
     spawnRotations:
     - {x: 0, y: 0, z: 180, w: 0}
     - {x: 0, y: 0, z: 180, w: 0}
@@ -30,6 +30,6 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 180, w: 0}
     - {x: 0, y: 0, z: 180, w: 0}
     - {x: 0, y: 0, z: 180, w: 0}
-    enemiesToSpawn: 0
+    enemiesToSpawn: 7
     timeToSpawn: 3
   parallaxBackground: {fileID: 21300000, guid: 8dddc076fb8f7024a91789302d5ac7c9, type: 3}
