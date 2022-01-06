@@ -6642,7 +6642,6 @@ MonoBehaviour:
   parallax: {fileID: 2063994886}
   levelConfigurations:
   - {fileID: 11400000, guid: ded57973f8e629e4b978c2f4355bd71b, type: 2}
-  - {fileID: 11400000, guid: 5c26a1a94d68cb34eaf4aad5b54b8f42, type: 2}
   countdownTime: 3
 --- !u!4 &1958073152
 Transform:
