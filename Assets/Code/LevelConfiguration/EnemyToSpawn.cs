@@ -4,16 +4,12 @@ using UnityEngine;
 public class EnemyToSpawn : ScriptableObject
 {
     [SerializeField] private EnemyId enemyId;
-    [SerializeField] private Vector3 spawnPosition;
-    [SerializeField] private Quaternion spawnRotation;
     [SerializeField] private int health;
     [SerializeField] private float speed;
     [SerializeField] private int pointsToAdd;
     [SerializeField] private PowerUpProbability[] _powerUpProbabilities;
 
     public EnemyId EnemyId => enemyId;
-    public Vector3 SpawnPosition => spawnPosition;
-    public Quaternion SpawnRotation => spawnRotation;
     public int Health => health;
     public float Speed => speed;
     public int PointsToAdd => pointsToAdd;
