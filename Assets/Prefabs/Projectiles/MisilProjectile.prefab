@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6711833742263977227}
   - component: {fileID: 3398598059801373218}
   - component: {fileID: 8281728197138148019}
+  - component: {fileID: 4298674168212171293}
   - component: {fileID: 8000021090860269420}
   m_Layer: 8
   m_Name: MisilProjectile
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.6666667, y: 0.6666667}
     newSize: {x: 0.4375, y: 0.4375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,6 +133,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.1}
   m_EdgeRadius: 0
+--- !u!95 &4298674168212171293
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502916199006939170}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd7c1ae4342b8f642a36f76eca7a7db6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8000021090860269420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +167,7 @@ MonoBehaviour:
   id: {fileID: 11400000, guid: 9f588f8ac59172f4b9bd697d99225743, type: 2}
   Speed: 10
   Damage: 20
-  rotateSpeed: 150
+  rotateSpeed: 300
   radius: 15
   distance: 0
   layerMask:
