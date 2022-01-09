@@ -23,7 +23,6 @@ public class LevelSystem : MonoBehaviour, IEventObserver
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         _uiSystem.SetHiScore();
         StartCoroutine(Countdown());
-        parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
     }
 
     public void ResetAndStart()
@@ -38,7 +37,6 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     {
         _uiSystem.HideAllMenus();
         _uiSystem.SetHiScore();
-        parallax.SetParallaxBackground(levelConfigurations[_currentLevel].ParallaxBackground);
         StartCoroutine(Countdown());
     }
 
