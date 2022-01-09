@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Vector2 _speed;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Vector2 speed;
 
     private Rigidbody2D _rb;
     private Camera _camera;
     private Vector2 _currentPosition;
+    private float _turnAmount;
 
 
     private void Awake()
@@ -18,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        _currentPosition += direction * (_speed * Time.deltaTime);
+        _currentPosition += direction * (speed * Time.deltaTime);
         _currentPosition = ClampFinalPosition(_currentPosition);
         _rb.MovePosition(_currentPosition);
+        _turnAmount = direction.y;
+        animator.SetFloat("Turn", _turnAmount);
     }
 
     private Vector2 ClampFinalPosition(Vector2 position)

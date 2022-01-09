@@ -16,8 +16,8 @@ public class UnityInputAdapter : IInput
         var vertical = 0f;
         if (Input.GetKey(_actionBindings.moveLeft)) horizontal = -1f; 
         if (Input.GetKey(_actionBindings.moveRight)) horizontal = 1f; 
-        if (Input.GetKey(_actionBindings.moveUp)) vertical = 1f; 
-        if (Input.GetKey(_actionBindings.moveDown)) vertical = -1f; 
+        if (Input.GetKey(_actionBindings.moveUp)) vertical = Input.GetAxis("Vertical"); 
+        if (Input.GetKey(_actionBindings.moveDown)) vertical = Input.GetAxis("Vertical"); 
              
         return new Vector2(horizontal, vertical).normalized;
     }
