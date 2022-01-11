@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7301110770994575969}
   - component: {fileID: 7732756067878214045}
   m_Layer: 7
-  m_Name: Bug6
+  m_Name: Giratorio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12488991, y: 0.00000014901161}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -81,7 +81,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1222321, y: 1.1262603}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!114 &7691726611719597290
 MonoBehaviour:
@@ -124,84 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: b18e9be6a8216fb4eb9ec45a2d4cadef, type: 2}
   damageForImpact: 30
-  verticalMovement:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: -0.0021277356
-      outSlope: -0.0021277356
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
-      value: -0.0042554713
-      inSlope: 0
-      outSlope: -2.004121
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3.068783
-      value: -2.1462262
-      inSlope: -2.004121
-      outSlope: 3.901843
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 4.1693125
-      value: 2.1478667
-      inSlope: 3.901843
-      outSlope: -4.979043
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 5.031746
-      value: -2.1462262
-      inSlope: -4.979043
-      outSlope: 4.570236
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 5.973545
-      value: 2.1580184
-      inSlope: 4.570236
-      outSlope: -4.4348826
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 6.941799
-      value: -2.1360748
-      inSlope: -4.4348826
-      outSlope: 0.26508087
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 15
-      value: 0
-      inSlope: 0.26508087
-      outSlope: 0.26508087
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  xPositionToTurn: 2.2
+  yExtremeValue: 0.85
+  verticalSpeed: 1
 --- !u!1 &8588252540525507760
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,13 +151,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8588252540525507760}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 298512519189172318}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &665776385862658257
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -273,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: ff0691ec8d973e84e9f225779bf2002c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4468dfa350bb7b049ae934ba8851b69e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -30,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 ClampFinalPosition(Vector2 position)
     {
         var viewportPoint = _camera.WorldToViewportPoint(position);
-        viewportPoint.x = Mathf.Clamp(viewportPoint.x, 0.05f, 0.95f);
-        viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.05f, 0.95f);
+        viewportPoint.x = Mathf.Clamp(viewportPoint.x, 0.06f, 0.95f);
+        viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.1f, 0.94f);
         return _camera.ViewportToWorldPoint(viewportPoint);
     }
 }

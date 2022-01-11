@@ -15,13 +15,13 @@ MonoBehaviour:
   waveConfigurations:
   - enemyToSpawn: {fileID: 11400000, guid: fa6b8b21c50c4eb45a5a417e7d1051a4, type: 2}
     spawnPositions:
-    - {x: 18, y: 0, z: 0}
-    - {x: 23, y: 5, z: 0}
-    - {x: 23, y: -5, z: 0}
-    - {x: 28, y: 4, z: 0}
-    - {x: 28, y: -4, z: 0}
-    - {x: 33, y: 5, z: 0}
-    - {x: 33, y: -5, z: 0}
+    - {x: 5.75, y: 0, z: 0}
+    - {x: 7.75, y: 1, z: 0}
+    - {x: 7.75, y: -1, z: 0}
+    - {x: 9.75, y: 0.6, z: 0}
+    - {x: 9.75, y: -0.6, z: 0}
+    - {x: 11.75, y: 1, z: 0}
+    - {x: 11.75, y: -1, z: 0}
     spawnRotations:
     - {x: 0, y: 0, z: 180, w: 0}
     - {x: 0, y: 0, z: 180, w: 0}
