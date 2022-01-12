@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f67aeec233f34cb98439c194a4fa7, type: 3}
   m_Name: Giratorio2 To Spawn
   m_EditorClassIdentifier: 
-  enemyId: {fileID: 0}
-  health: 0
-  speed: 0
-  pointsToAdd: 0
+  enemyId: {fileID: 11400000, guid: 62c5f5d9daf7dac40a2b0adb4d2a4036, type: 2}
+  health: 10
+  speed: 2.5
+  pointsToAdd: 5
   _powerUpProbabilities: []
