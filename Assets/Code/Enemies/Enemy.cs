@@ -7,13 +7,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
 
     [SerializeField] private EnemyId id;
     [SerializeField] private int damageForImpact;
+    [SerializeField] protected float MinimumDistanceToShoot;
 
     protected Rigidbody2D Rb;
     protected Collider2D EnemyCollider;
-    protected SpriteRenderer Renderer;
     protected HealthController HealthController;
     protected WeaponController WeaponController;
     private ExplosionController _explosionController;
+    protected Transform Player;
     protected int Health;
     protected float Speed;
     protected int PointsToAdd;
@@ -28,11 +29,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
     {
         Rb = GetComponent<Rigidbody2D>();
         EnemyCollider = GetComponent<Collider2D>();
-        Renderer = GetComponent<SpriteRenderer>();
         HealthController = GetComponent<HealthController>();
         WeaponController = GetComponent<WeaponController>();
         Team = Teams.Enemy;
         _camera = Camera.main;
+        Player = GameObject.FindWithTag("Player").transform;
     }
 
     public void Configure(int health, float speed, int pointsToAdd, PowerUpProbability[] powerUpProbabilities)
@@ -106,7 +107,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IEventObserver
         _previousInstance = instance;
         _previousFrame = Time.frameCount;
         DoDestroy();
-        _explosionController.Create(transform.position);
+        if (points > 0)
+        {
+            _explosionController.Create(transform.position);
+        }
         var enemyDestroyedEvent = new EnemyDestroyedEvent(points);
         ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(enemyDestroyedEvent);
         

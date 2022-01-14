@@ -80,7 +80,7 @@ SpriteRenderer:
   m_Size: {x: 0.46875, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7943025469776418859
@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 3991164018573735026}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4da55b93edc1714c99c85ea57841b51, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,7 +211,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &9055877635438798714
@@ -326,6 +326,7 @@ MonoBehaviour:
   defaultProjectile: {fileID: 11400000, guid: 87ee850d531772d47a64df1de5cd8c97, type: 2}
   tripleProjectile: {fileID: 0}
   fragmentationProjectile: {fileID: 0}
+  shootPoint: {fileID: 8904234552485525166}
 --- !u!114 &7404683553466059705
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -252,9 +252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abe05d44d9750449bdfc7ee5444022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultProjectile: {fileID: 0}
+  defaultProjectile: {fileID: 11400000, guid: bbfda21927251a344b93c67a2ac4f734, type: 2}
   tripleProjectile: {fileID: 0}
   fragmentationProjectile: {fileID: 0}
+  shootPoint: {fileID: 7553138652782361830}
 --- !u!114 &4751856602392571245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: 5056e59e8f24b8240839ee4c4841f5de, type: 2}
   damageForImpact: 30
+  MinimumDistanceToShoot: 5
+  animator: {fileID: 2521151707426621732}
+  cannon: {fileID: 5507508427671837209}
 --- !u!1 &7012537803744527874
 GameObject:
   m_ObjectHideFlags: 0

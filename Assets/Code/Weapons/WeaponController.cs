@@ -5,6 +5,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private ProjectileId defaultProjectile;
     [SerializeField] private ProjectileId tripleProjectile;
     [SerializeField] private ProjectileId fragmentationProjectile;
+    [SerializeField] private Transform shootPoint;
     
     private Transform _projectileSpawnPoint;
     private ProjectileId _activeProjectile;
@@ -22,7 +23,6 @@ public class WeaponController : MonoBehaviour
     {
         _durability = 100;
         _hasShoot = false;
-        var shootPoint = transform.Find("ProjectileSpawnPoint");
         if (shootPoint != null)
             _projectileSpawnPoint = shootPoint;
     }

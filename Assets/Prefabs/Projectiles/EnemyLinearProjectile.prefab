@@ -135,5 +135,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: bbfda21927251a344b93c67a2ac4f734, type: 2}
-  Speed: 2
+  Speed: 3
   Damage: 50
