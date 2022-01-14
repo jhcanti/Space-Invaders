@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyId: {fileID: 11400000, guid: 5056e59e8f24b8240839ee4c4841f5de, type: 2}
   health: 100
-  speed: 1.666
+  speed: 1.6
   pointsToAdd: 25
   _powerUpProbabilities: []
