@@ -10,7 +10,7 @@ BlendTree:
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 2c4747ffb94f716428b7e09b1afcbdb3, type: 2}
-    m_Threshold: -154.28
+    m_Threshold: 25.72
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -18,7 +18,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 680a87b4a1e40e94cb914e139f7ef5a9, type: 2}
-    m_Threshold: -128.57
+    m_Threshold: 51.43
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -26,7 +26,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: eea8a40ae7a30324983eadd9303e7847, type: 2}
-    m_Threshold: -102.85
+    m_Threshold: 77.14
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -34,7 +34,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 26bb6ff146631f84dbb41e7253f72545, type: 2}
-    m_Threshold: -77.14
+    m_Threshold: 102.85
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -42,7 +42,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: fd7eca2a2f664db4c8cf28e81bde223f, type: 2}
-    m_Threshold: -51.42
+    m_Threshold: 128.57
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -50,7 +50,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 949be801bb8fbff4abc2786d845aa723, type: 2}
-    m_Threshold: -25.71
+    m_Threshold: 154.28
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -58,7 +58,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: dd401ea54891264448e89777a4dfbd03, type: 2}
-    m_Threshold: 0
+    m_Threshold: 180
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -66,8 +66,8 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: Angle
   m_BlendParameterY: Blend
-  m_MinThreshold: -154.28
-  m_MaxThreshold: 0
+  m_MinThreshold: 25.72
+  m_MaxThreshold: 180
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -133,7 +133,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
