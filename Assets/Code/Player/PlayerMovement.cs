@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var viewportPoint = _camera.WorldToViewportPoint(position);
         viewportPoint.x = Mathf.Clamp(viewportPoint.x, 0.06f, 0.95f);
-        viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.1f, 0.94f);
+        viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.15f, 0.94f);
         return _camera.ViewportToWorldPoint(viewportPoint);
     }
 }
