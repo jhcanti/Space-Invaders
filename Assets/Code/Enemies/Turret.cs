@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Turret : Enemy
@@ -34,9 +33,4 @@ public class Turret : Enemy
         
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, MinimumDistanceToShoot);
-    }
 }
