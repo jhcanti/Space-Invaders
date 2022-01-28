@@ -17,6 +17,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     private IScoreSystem _scoreSystem;
     private IInput _input;
     private bool _isGamePaused;
+    private bool _isPlayerDead;
 
 
     private void Awake()
@@ -138,6 +139,8 @@ public class UISystem : MonoBehaviour, IEventObserver
     
     private void OnPausePressed()
     {
+        if (_isPlayerDead) return;
+        
         pauseView.Show();
         _isGamePaused = true;
         new PauseGameCommand().Execute();
@@ -152,6 +155,7 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     public void OnRestartPressed()
     {
+        _isPlayerDead = false;
         continueView.Hide();
         _eventQueue.EnqueueEvent(new RestartEvent());
     }
@@ -195,6 +199,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         if (eventData.EventId == EventIds.GameOver)
         {
+            _isPlayerDead = true;
             OnPlayerDead();
         }
     }
