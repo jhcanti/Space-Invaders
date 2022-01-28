@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PauseView : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class PauseView : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(resumeButton.gameObject);
     }
 
     private void ResumeGame()
