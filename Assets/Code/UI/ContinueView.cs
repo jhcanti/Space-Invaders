@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ContinueView : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class ContinueView : MonoBehaviour
 
     public void Configure(UISystem uiSystem)
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         _uiSystem = uiSystem;
     }
     
