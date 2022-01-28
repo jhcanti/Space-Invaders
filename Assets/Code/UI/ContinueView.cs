@@ -30,6 +30,8 @@ public class ContinueView : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
     }
     
     private void NoContinue()
