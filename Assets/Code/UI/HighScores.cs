@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class HighScores : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class HighScores : MonoBehaviour
 
     private void Start()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_backButton.gameObject);
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
 
