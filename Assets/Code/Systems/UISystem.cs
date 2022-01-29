@@ -36,6 +36,7 @@ public class UISystem : MonoBehaviour, IEventObserver
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.GameOver, this);
         _eventQueue.Subscribe(EventIds.PlayerSpawned, this);
+        _eventQueue.Subscribe(EventIds.PlayerDestroyed, this);
         _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
     }
 
@@ -57,6 +58,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         _eventQueue.Unsubscribe(EventIds.GameOver, this);
         _eventQueue.Unsubscribe(EventIds.PlayerSpawned, this);
+        _eventQueue.Unsubscribe(EventIds.PlayerDestroyed, this);
     }
 
     public void HideAllMenus()
@@ -206,6 +208,11 @@ public class UISystem : MonoBehaviour, IEventObserver
         if (eventData.EventId == EventIds.PlayerSpawned)
         {
             _isPlayerSpawned = true;
+        }
+
+        if (eventData.EventId == EventIds.PlayerDestroyed)
+        {
+            _isPlayerSpawned = false;
         }
     }
 }
