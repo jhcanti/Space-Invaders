@@ -27,5 +27,6 @@ public class PlayerInstaller : MonoBehaviour
     public void DestroyPlayer()
     {
         Destroy(_player.gameObject);
+        _eventQueue.EnqueueEvent(new PlayerDestroyedEvent());
     }
 }
