@@ -11,7 +11,8 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
-        _uiSystem.SetHealth(_maxHealth, _currentHealth);
+        if (_team == Teams.Ally)
+            _uiSystem.SetHealth(_maxHealth, _currentHealth);
     }
 
     public void Init(int maxHealth, Teams team)
