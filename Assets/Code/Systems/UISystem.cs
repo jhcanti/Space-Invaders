@@ -17,7 +17,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     private IScoreSystem _scoreSystem;
     private IInput _input;
     private bool _isGamePaused;
-    private bool _isPlayerDead;
+    private bool _isPlayerSpawned;
 
 
     private void Awake()
@@ -35,6 +35,7 @@ public class UISystem : MonoBehaviour, IEventObserver
         _input = ServiceLocator.Instance.GetService<IInput>();
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _eventQueue.Subscribe(EventIds.GameOver, this);
+        _eventQueue.Subscribe(EventIds.PlayerSpawned, this);
         _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
     }
 
@@ -55,6 +56,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     private void OnDestroy()
     {
         _eventQueue.Unsubscribe(EventIds.GameOver, this);
+        _eventQueue.Unsubscribe(EventIds.PlayerSpawned, this);
     }
 
     public void HideAllMenus()
@@ -139,7 +141,7 @@ public class UISystem : MonoBehaviour, IEventObserver
     
     private void OnPausePressed()
     {
-        if (_isPlayerDead) return;
+        if (GameManager.Instance.CurrentGameState != GameStates.Playing || _isPlayerSpawned == false) return;
         
         pauseView.Show();
         _isGamePaused = true;
@@ -155,7 +157,6 @@ public class UISystem : MonoBehaviour, IEventObserver
 
     public void OnRestartPressed()
     {
-        _isPlayerDead = false;
         continueView.Hide();
         _eventQueue.EnqueueEvent(new RestartEvent());
     }
@@ -199,8 +200,12 @@ public class UISystem : MonoBehaviour, IEventObserver
     {
         if (eventData.EventId == EventIds.GameOver)
         {
-            _isPlayerDead = true;
             OnPlayerDead();
+        }
+
+        if (eventData.EventId == EventIds.PlayerSpawned)
+        {
+            _isPlayerSpawned = true;
         }
     }
 }
