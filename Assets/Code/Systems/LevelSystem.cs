@@ -8,6 +8,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     [SerializeField] private int countdownTime;
 
     private UISystem _uiSystem;
+    private AudioSystem _audioSystem;
     private EnemySpawner _enemySpawner;
     private PlayerInstaller _playerInstaller;
     private int _currentLevel;
@@ -17,6 +18,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
     {
         _currentLevel = 0;
         _uiSystem = ServiceLocator.Instance.GetService<UISystem>();
+        _audioSystem = ServiceLocator.Instance.GetService<AudioSystem>();
         _enemySpawner = ServiceLocator.Instance.GetService<EnemySpawner>();
         _playerInstaller = ServiceLocator.Instance.GetService<PlayerInstaller>();
         ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.NextLevel, this);
@@ -49,6 +51,7 @@ public class LevelSystem : MonoBehaviour, IEventObserver
             _uiSystem.SetCountdownText(i.ToString());
             yield return new WaitForSeconds(1f);
         }
+        _audioSystem.PlayMusic("gameplay");
         _uiSystem.HideCountdownText();
         _enemySpawner.StartSpawn(levelConfigurations[_currentLevel]);
         parallax.StartParallax();
