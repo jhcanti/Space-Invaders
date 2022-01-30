@@ -27,6 +27,7 @@ public class PlayingState : IState, IEventObserver
         _eventQueue.Subscribe(EventIds.EnemyDestroyed, this);
         _eventQueue.Subscribe(EventIds.AllEnemiesSpawned, this);
         _eventQueue.Subscribe(EventIds.PlayerDestroyed, this);
+        _eventQueue.Subscribe(EventIds.BackToMenu, this);
         _aliveEnemies = 0;
         _allEnemiesSpawned = false;
     }
@@ -38,6 +39,7 @@ public class PlayingState : IState, IEventObserver
         _eventQueue.Unsubscribe(EventIds.EnemyDestroyed, this);
         _eventQueue.Unsubscribe(EventIds.AllEnemiesSpawned, this);
         _eventQueue.Unsubscribe(EventIds.PlayerDestroyed, this);
+        _eventQueue.Unsubscribe(EventIds.BackToMenu, this);
     }
 
     public void Process(EventData eventData)
@@ -64,6 +66,11 @@ public class PlayingState : IState, IEventObserver
         if (eventData.EventId == EventIds.PlayerDestroyed)
         {
             _gameManager.CurrentGameState = GameStates.GameOver;
+        }
+
+        if (eventData.EventId == EventIds.BackToMenu)
+        {
+            new LoadSceneCommand("Menu").Execute();
         }
     }
 }
