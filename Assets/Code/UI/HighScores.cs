@@ -10,6 +10,7 @@ public class HighScores : MonoBehaviour
 
     private EventQueue _eventQueue;
     private IScoreSystem _scoreSystem;
+    private AudioSystem _audioSystem;
     private UserData _userData;
 
     private void Awake()
@@ -23,7 +24,9 @@ public class HighScores : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_backButton.gameObject);
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
         _scoreSystem = ServiceLocator.Instance.GetService<IScoreSystem>();
-
+        _audioSystem = ServiceLocator.Instance.GetService<AudioSystem>();
+        _audioSystem.PlayMusic("menu");
+        
         _userData = _scoreSystem.GetUserData();
 
         for (var i = 0; i < _userData.BestScores.Length; i++)

@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button highScoresButton;
     [SerializeField] private Button quitButton;
 
+    private AudioSystem _audioSystem;
     private EventQueue _eventQueue;
         
     private void Awake()
@@ -23,7 +24,9 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(startGameButton.gameObject);
+        _audioSystem = ServiceLocator.Instance.GetService<AudioSystem>();
         _eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
+        _audioSystem.PlayMusic("menu");
     }
 
     private void GoToHighScores()
