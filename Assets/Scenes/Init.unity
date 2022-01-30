@@ -342,7 +342,19 @@ MonoBehaviour:
     PlayOnAwake: 0
     Loop: 1
     IsMusic: 1
-    Volume: 0.5
+    Volume: 0.3
+  - SoundName: select
+    Clip: {fileID: 8300000, guid: c1f550fb450fe8a438d573a294be559b, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    IsMusic: 0
+    Volume: 1
+  - SoundName: click
+    Clip: {fileID: 8300000, guid: 7c22f05952d560c4a81d8d31b49034d5, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    IsMusic: 0
+    Volume: 1
 --- !u!4 &1491538482
 Transform:
   m_ObjectHideFlags: 0
