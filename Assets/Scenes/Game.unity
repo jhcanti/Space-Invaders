@@ -7301,7 +7301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallax: {fileID: 2063994886}
   levelConfigurations:
-  - {fileID: 11400000, guid: ded57973f8e629e4b978c2f4355bd71b, type: 2}
+  - {fileID: 11400000, guid: 08ff0297c42556542becb4affce4a7c1, type: 2}
   countdownTime: 3
 --- !u!4 &1958073152
 Transform:
